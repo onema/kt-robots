@@ -47,8 +47,13 @@ From the command line use `gradlew` to run the `deployRobots` task:
 ```bash
 ./gradlew deployRobots
 ```
+<details>
+<summary>Details</summary>
 
-This task will compile the `lambda-robots` project, and deploy the lambda functions to your AWS account in the `us-east-2` (Ohio) region. 
+This task will 
+- Compile the `lambda-robots` project
+- Deploy the lambda functions to your AWS account in the `us-east-2` (Ohio) region
+</details>
 
 <details>
 <summary>Use the InjelliJ Gradle Plugin</summary>
@@ -81,19 +86,17 @@ From the command line use `gradlew` to run the `deployServer` task:
 ```bash
 ./gradlew deployServer
 ```
-This task will compile the `server` project, and deploy it to AWS Fargate in the `us-east-2` (Ohio) region.
-
 <details>
-<summary>Deployment details</summary>
+<summary>Details</summary>
 
-This command will create and do a few things:
+This task will create and do a few things:
 
-1. Copile the server
-2. Creates a docker image that runs the server
-4. Create an ECR docker repository to host the image
-5. Pushes the image to the new docker repository
-6. Creates a Fargate cluster
-7. Creates a service and runs a task exposing port 8080
+- Copile the server
+- Creates a docker image that runs the server
+- Create an ECR docker repository to host the image
+- Pushes the image to the new docker repository
+- Creates a Fargate cluster
+- Creates a service and runs a task exposing port 8080
 
 </details>
 
