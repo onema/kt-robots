@@ -31,14 +31,15 @@ The challenge requires an AWS account. AWS provides a [*Free Tier*](https://aws.
 > For this challenge we will be using the US-EAST-2 region
 
 ### Clone Git Challenge Repository
+<details>
+<summary>Clone command</summary>
 
 Run the following command to clone the KT-Robots challenge. 
 ```bash
 git@github.com:onema/kt-robots.git
 cd kt-robots
 ```
-
-
+</details>
 
 ## Level 1: Deploy functions and server
 ### Deploy using the Terraform
@@ -96,6 +97,8 @@ This command will create and do a few things:
 
 </details>
 
+<details>
+<summary>Getting the task IP Address</summary>
 Once the deployment has finished, you will have to login to AWS to get the server IP:
 - Amazon ECS
 - Clusters
@@ -110,13 +113,17 @@ Once you have the IP paste it in your broser usin the port `8080`
 # For example
 http://3.15.171.35:8080/
 ```
+</details>
+
+<details>
+<summary>Adding robots to game board</summary>
 
 You can add the robot lambda function ARN to the game board client in the browser.  **You can add the ARN multiple times.**
 
-![Game configuration](images/.png)
+![Game configuration](images/gameConfiguration.png)
 
 Use the **Advance Configuration** to change any default settings.  Use **Clear Saved Config** to reset all settings to default.
-
+</details>
 
 ## Level 2: Create an Attack Strategy
 
@@ -132,6 +139,7 @@ For example, you can use luck, like `YosemiteSam`, which shoots in random direct
 <summary>YosemiteSam Details</summary>
 
 ![Yosemite Sam](images/yosemiteSam.png)
+
 Yosemite Sam is fast and trigger happy!
 
 This robot chooses a random angle on every turn and fires a missile. It has an extra large engine which helps it avoid attacks and keeps it's distance from the edges of the game board to avoid collisions!
@@ -153,6 +161,7 @@ This robot uses the `scan()` method to find enemies and aim missiles at them.
 <summary>HotShot Details</summary>
 
 ![HotShot](images/hotShot.jpg)
+
 HotShot is patient and accurate, it hardly ever misses it's target!
 
 This robot uses the `scan()` method to find targets, if it doesn't find targets it moves to a new location. If it receives damage it initiates an evasive move. 
@@ -173,6 +182,7 @@ This robot uses the `scan()` method to find enemies and chases them.
 <summary>RoboDog Details</summary>
 
 ![RoboDog](images/roboDog.jpg)
+
 RoboDog moves at random and scans what is right in front of it, when this dog bites it won't let go!
 
 This robot uses the `scan()` method to find targets right in from of it, if it does it adjust it's heading to move towards the target, this dog can hit you with a missile and with collision damage!
@@ -192,7 +202,8 @@ This robot just sits down and waits to be hit.
 <details>
 <summary>TargetRobot Details</summary>
 
-![TargetRobot](images/targetRobot.jpg)
+![TargetRobot](images/targetRobot.png)
+
 Please don't be the target robot, no body wants to be the target robot!
 
 | Equipment | Type              | Points | Details |
