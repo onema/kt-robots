@@ -52,7 +52,8 @@ From the command line use `gradlew` to run the `deployRobots` task:
 
 This task will 
 - Compile the `lambda-robots` project
-- Deploy the lambda functions to your AWS account in the `us-east-2` (Ohio) region
+- Deploy the lambda functions to your AWS account in the `us-east-2` (Ohio) region using Terraform
+- The terraform code is located in the `lambda-robots/infrastructure` directory
 </details>
 
 <details>
@@ -91,12 +92,15 @@ From the command line use `gradlew` to run the `deployServer` task:
 
 This task will create and do a few things:
 
-- Copile the server
+- Compile the server
+- Deploy the game server to your AWS account in the `us-east-2` (Ohio) region using Terraform
 - Creates a docker image that runs the server
 - Create an ECR docker repository to host the image
 - Pushes the image to the new docker repository
 - Creates a Fargate cluster
 - Creates a service and runs a task exposing port 8080
+- The terraform code is located in the `server/infrastructure` directory
+
 
 </details>
 
