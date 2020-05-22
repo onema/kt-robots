@@ -287,6 +287,7 @@ Set the proper equipment to suit your attack and evasion strategies.
 
 <details>
 <summary>Test if your robot is the best</summary>
+
 ![killer-robots](images/killerRobots.jpg)
 
 
