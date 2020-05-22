@@ -291,9 +291,9 @@ Set the proper equipment to suit your attack and evasion strategies.
 
 For the boss level, your opponent is every other team! Submit your Robot ARN to final showdown and see how well it fares.
 
+**May the odds be ever in your favor!**
 </details>
 
-**May the odds be ever in your favor!**
 
 ## Programming Reference
 
