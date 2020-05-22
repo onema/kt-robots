@@ -287,7 +287,8 @@ Set the proper equipment to suit your attack and evasion strategies.
 
 <details>
 <summary>Test if your robot is the best</summary>
-![Do you want killer robots?](images/killer-robots.jpg)
+![killer-robots](images/killerRobots.jpg)
+
 
 For the boss level, your opponent is every other team! Submit your Robot ARN to final showdown and see how well it fares.
 
