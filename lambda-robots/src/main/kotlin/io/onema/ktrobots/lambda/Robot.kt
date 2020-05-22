@@ -76,7 +76,7 @@ abstract class Robot {
         gameInfo = request.gameInfo
         scanClient = ScanClient(request.gameInfo.apiUrl, request.gameId, robot.id, httpClient, mapper)
 
-        val robotId = if(request.lambdaRobot.id.isEmpty())  RobotFactory.generateId(request.index, request.gameId) else request.lambdaRobot.id
+        val robotId = if(request.lambdaRobot.id.isEmpty())  LambdaRobot.generateId(request.index, request.gameId) else request.lambdaRobot.id
         log.info("Checking for Robot ID: $robotId")
         val record: LambdaRobotStateRecord = table
             .getById(robotId)
@@ -115,7 +115,6 @@ abstract class Robot {
      * Returns a value between -180 and 180 degrees
      */
     fun angleToXY(x: Double, y: Double): Double {
-//        return normalizeAngle(atan2(x - robot.x, y - robot.y) * 180.0 / PI)
         return angleToXY(x, y, robot)
     }
 
@@ -123,9 +122,6 @@ abstract class Robot {
      * Determine the distance relative to the current robot position
      */
     fun distanceToXY(x: Double, y: Double): Double {
-//        val deltaX = x - robot.x
-//        val deltaY = y - robot.y
-//        return sqrt(deltaX.pow(2.0) + deltaY.pow(2.0))
         return distanceToXY(x, y, robot)
     }
 
@@ -133,8 +129,6 @@ abstract class Robot {
      * Normalize angle to be between -180 and 180
      */
     fun normalizeAngle(angle: Double): Double {
-//        val result = angle % 360.0
-//        return if(result < -180.0) result + 360.0 else result
         return normalizeAngle180(angle)
     }
 

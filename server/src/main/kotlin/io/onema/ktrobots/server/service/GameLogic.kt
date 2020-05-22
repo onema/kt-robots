@@ -23,8 +23,8 @@ import kotlin.streams.toList
 
 class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotService: TRobot) {
 
-    val gameMessages = mutableListOf<Message>()
-    val log: Logger = LoggerFactory.getLogger(GameLogic::class.java)
+    private val gameMessages = mutableListOf<Message>()
+    private val log: Logger = LoggerFactory.getLogger(GameLogic::class.java)
 
     /**
      * Initialize the game by getting each of the robots build and placing them on the board
@@ -35,7 +35,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
         log.info("⏱️ Getting robots builds took $t1 ms")
 
         val (positionedRobots, t2) = measureTimeMillis {  placeOnGameBoard(game.info, robots) }
-        log.info("⏱️ Placing robots in the board took $t2 ms")
+        log.debug("⏱️ Placing robots in the board took $t2 ms")
         return game.copy(messages = gameMessages, robots = positionedRobots, status = GameStatus.nextTurn)
     }
 
@@ -51,19 +51,19 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
 
         // Apply all robot actions
         val (gameWithActions, t2) = measureTimeMillis { applyAllActionsToGame(game, robotsToActions) }
-        log.info("⏱️ Applying all robot actions took $t2 ms ")
+        log.debug("⏱️ Applying all robot actions took $t2 ms ")
 
         // Move all robots
         val (gameWithMoves, t3) = measureTimeMillis { moveAllRobotsInGame(gameWithActions) }
-        log.info("⏱️ Moving all robot took $t3 ms ")
+        log.debug("⏱️ Moving all robot took $t3 ms ")
 
         // Update missile states
         val (gameWithMissileUpdates, t4) = measureTimeMillis { updateAllMissiles(gameWithMoves) }
-        log.info("⏱️ Updating missiles took $t4 ms ")
+        log.debug("⏱️ Updating missiles took $t4 ms ")
 
         // Update game status to finished if it needs to be updated
         val (gameWithUpdatedState, t5) = measureTimeMillis { updateGameStatus(gameWithMissileUpdates) }
-        log.info("⏱️ Updating game status took $t5 ms ")
+        log.debug("⏱️ Updating game status took $t5 ms ")
 
         gameWithUpdatedState.copy(messages = gameMessages)
     }
@@ -89,7 +89,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
                 val action = if (!response.hasError) {
                     response.robotAction
                 } else {
-                    gameMessages.add("ACTION ERROR: ${robot.name}, will maintain speed and heading. Error: ${response.errorMessage}", game)
+                    gameMessages.add("\uD83D\uDEA8 ACTION ERROR: ${robot.name}(R${robot.index}), will maintain speed and heading. Error: ${response.errorMessage}", game)
                     LambdaRobotAction(speed = robot.speed, heading = robot.heading)
                 }
                 robot to action
@@ -293,7 +293,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
     }
 
     private fun moveMissile(game: Game, missile: LambdaRobotMissile): Game {
-        val moveData = moveObject(game, missile.x, missile.y, missile.distance, missile.speed, missile.heading, missile.range, missile.robotId)
+        val moveData = moveObject(game, missile.x, missile.y, missile.distance, missile.speed, missile.heading, missile.range)
         val updatedMissile = if(moveData.collision) {
             missile.copy(status = MissileStatus.explodingDirect, speed = 0.0, x = moveData.x, y = moveData.y)
         } else {
@@ -323,7 +323,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
 
                     // Build robot using the build from lambda
                     if (!response.hasError) {
-                        RobotFactory.create(i, build, game, arn)
+                        LambdaRobot.create(i, build, game, arn)
                     } else {
                         // there was an error getting the response from the robot function, set it as dead
                         LambdaRobot(status = LambdaRobotStatus.dead) to response.errorMessage
@@ -366,7 +366,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
         }
 
         fun moveObject(game: Game, startX: Double, startY: Double, startDistance: Double,
-                       speed: Double, heading: Double, range: Double, id: String = ""): MoveData {
+                       speed: Double, heading: Double, range: Double): MoveData {
             val distance = startDistance + speed * game.info.secondsPerTurn
 
             // Ensure robot cannot move beyond its max range

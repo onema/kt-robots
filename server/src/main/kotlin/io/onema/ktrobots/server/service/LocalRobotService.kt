@@ -13,7 +13,6 @@ package io.onema.ktrobots.server.service
 
 import io.onema.ktrobots.commons.domain.LambdaRobotRequest
 import io.onema.ktrobots.commons.domain.LambdaRobotResponse
-import io.onema.ktrobots.commons.utils.measureTimeMillis
 import io.onema.ktrobots.lambda.Robot
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
