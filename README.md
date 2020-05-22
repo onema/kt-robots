@@ -7,6 +7,9 @@ In KT-Robots, you program a battle robot that participates on a square game fiel
  
 ## Level 0: Setup
 
+<details>
+<summary>Install tools & setup code</summary>
+
 ### Install the required tools
 Make sure that you have the following tools installed in your computer.
 <details>
@@ -40,8 +43,12 @@ git@github.com:onema/kt-robots.git
 cd kt-robots
 ```
 </details>
+</details>
 
 ## Level 1: Deploy functions and server
+<details>
+<summary>Deploy lambda functions and server</summary>
+ 
 ### Deploy using the Terraform
 From the command line use `gradlew` to run the `deployRobots` task: 
 ```bash
@@ -131,8 +138,12 @@ You can add the robot lambda function ARN to the game board client in the browse
 
 Use the **Advance Configuration** to change any default settings.  Use **Clear Saved Config** to reset all settings to default.
 </details>
+</details>
 
 ## Level 2: Create an Attack Strategy
+
+<details>
+<summary>Develop your attack strategy</summary>
 
 Now that you have deployed all the robots to your account, add the ARN of the `TargetRobot` multiple times to the KT-Robots server to create targets.
 
@@ -142,10 +153,10 @@ Now update the behavior of `BringYourOwnRobot` to shoot down the target robots.
 ### Use Luck - YosemiteSam 
 For example, you can use luck, like `YosemiteSam`, which shoots in random directions
 
+![Yosemite Sam](images/yosemiteSam.png)
+
 <details>
 <summary>YosemiteSam Details</summary>
-
-![Yosemite Sam](images/yosemiteSam.png)
 
 Yosemite Sam is fast and trigger happy!
 
@@ -162,12 +173,11 @@ This robot chooses a random angle on every turn and fires a missile. It has an e
 
 
 ### Use Targeting - HotShot 
-
 This robot uses the `scan()` method to find enemies and aim missiles at them. 
+![HotShot](images/hotShot.jpg)
+
 <details>
 <summary>HotShot Details</summary>
-
-![HotShot](images/hotShot.jpg)
 
 HotShot is patient and accurate, it hardly ever misses it's target!
 
@@ -185,10 +195,10 @@ This robot uses the `scan()` method to find targets, if it doesn't find targets 
 ### Chase like a dog - RoboDog 
 
 This robot uses the `scan()` method to find enemies and chases them. 
-<details>
-<summary>RoboDog Details</summary>
-
 ![RoboDog](images/roboDog.jpg)
+
+<details>
+<summary>RoboDog Details</summ4ary>
 
 RoboDog moves at random and scans what is right in front of it, when this dog bites it won't let go!
 
@@ -206,10 +216,10 @@ This robot uses the `scan()` method to find targets right in from of it, if it d
 ### TargetRobot 
 
 This robot just sits down and waits to be hit. 
+![TargetRobot](images/targetRobot.png)
+
 <details>
 <summary>TargetRobot Details</summary>
-
-![TargetRobot](images/targetRobot.png)
 
 Please don't be the target robot, no body wants to be the target robot!
 
@@ -228,9 +238,14 @@ Please don't be the target robot, no body wants to be the target robot!
 - Your robot can be damaged by its own missiles. 
 - Check `gameInfo.farHitRange` to make sure your target is beyond the damage range. 
 - If you don't mind a bit of self-inflicted pain, you can also use `gameInfo.nearHitRange` or even `game.directHitRange` instead.
+</details>
 
 ## Level 3: Create an Evasion Strategy
 
+
+<details>
+<summary>Develop your evasion strategy</summary>
+ 
 Add the `YosemiteSam` ARN twice to the KT-Robots server to create two attackers.
 
 Now update the behavior of `BringYourOwnRobot` to avoid getting shot. 
@@ -246,8 +261,12 @@ Chase and ram into your opponents like `RoboDog`.
 
 Beware that a robot cannot change heading without suddenly stopping if its speed exceeds `Robot.MaxSpeed`.
 </details>
+</details>
 
 ## Level 4: Take on the Champ
+
+<details>
+<summary>Test if your robot is good enough</summary>
 
 Add the `HotShot` ARN once to the KT-Robots server to create one formidable opponent.
 
@@ -261,9 +280,18 @@ Set the proper equipment to suit your attack and evasion strategies.
 
 **Remember that your build cannot exceed 8 points, or your robot will be disqualified from the competition.**
 
+</details>
+
+
 ## BOSS LEVEL: Enter the Multi-Team Deathmatch Competition
 
+<details>
+<summary>Test if your robot is the best</summary>
+![Do you want killer robots?](images/killer-robots.jpg)
+
 For the boss level, your opponent is every other team! Submit your Robot ARN to final showdown and see how well it fares.
+
+</details>
 
 **May the odds be ever in your favor!**
 
