@@ -14,9 +14,12 @@ package io.onema.ktrobots.lambda.functions
 import io.onema.ktrobots.commons.domain.*
 import io.onema.ktrobots.lambda.LambdaRobotFunction
 import io.onema.ktrobots.lambda.Robot
-import java.lang.RuntimeException
 import kotlin.random.Random
 
+/**
+ * RoboDog chases after a target if it finds one, it has an ultra short range radar, which means that it needs
+ * to be very close to it's target before it chases
+ */
 class RoboDog : Robot(), LambdaRobotFunction {
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return LambdaRobotBuild(

@@ -15,6 +15,9 @@ import io.onema.ktrobots.commons.domain.*
 import io.onema.ktrobots.lambda.LambdaRobotFunction
 import io.onema.ktrobots.lambda.Robot
 
+/**
+ * This is the target robot, it is used for target practice.
+ */
 class TargetRobot : Robot(), LambdaRobotFunction {
 
     private val NAME = "TargetRobot"

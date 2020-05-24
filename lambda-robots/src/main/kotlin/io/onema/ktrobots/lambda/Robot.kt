@@ -78,8 +78,7 @@ abstract class Robot {
             request.gameInfo.apiUrl,
             request.gameId,
             robot.id,
-            httpClient,
-            mapper
+            httpClient
         )
 
         val robotId = if(request.lambdaRobot.id.isEmpty())  LambdaRobot.generateId(request.index, request.gameId) else request.lambdaRobot.id

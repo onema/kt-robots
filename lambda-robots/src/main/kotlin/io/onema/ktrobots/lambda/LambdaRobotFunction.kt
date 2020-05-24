@@ -19,7 +19,6 @@ import io.onema.ktrobots.commons.domain.LambdaRobotResponse
 
 interface LambdaRobotFunction: RequestHandler<LambdaRobotRequest, LambdaRobotResponse> {
 
-    //--- Methods ---
     fun handle(request: LambdaRobotRequest): LambdaRobotResponse
 
     /**

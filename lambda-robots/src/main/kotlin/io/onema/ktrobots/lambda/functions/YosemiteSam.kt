@@ -16,6 +16,9 @@ import io.onema.ktrobots.lambda.LambdaRobotFunction
 import io.onema.ktrobots.lambda.Robot
 import kotlin.random.Random
 
+/**
+ * YosemiteSam shoots at random directions and zig-zags around the screen
+ */
 class YosemiteSam : Robot(), LambdaRobotFunction {
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return Pair(LambdaRobotBuild(
