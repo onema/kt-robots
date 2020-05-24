@@ -4,6 +4,7 @@ In KT-Robots, you program a battle robot that participates on a square game fiel
 
 **KT-Robots is a port of the [λ-Robots](https://github.com/LambdaSharp/LambdaRobots) and the 90s [P-Robots](https://corewar.co.uk/probots.htm) game to [kotlin](https://kotlinlang.org/) and [spring](https://spring.io/).**
 
+![](images/kotlin-robots.jpg)
  
 ## Level 0: Setup
 
