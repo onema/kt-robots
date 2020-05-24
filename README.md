@@ -1,6 +1,6 @@
 # KT-Robots
 
-In KT-Robots, you program a battle robot that participates on a square game field. Each turn, the server invokes your robot's Lambda function to get its action for the turn until either the robot wins or is destroyed.
+In KT-Robots, you program a battle robot that participates in a square game field. Each turn, the server invokes your robot's Lambda function to get its action until the robot wins or is destroyed.
 
 **KT-Robots is a port of the [λ-Robots](https://github.com/LambdaSharp/LambdaRobots) and the 90s [P-Robots](https://corewar.co.uk/probots.htm) game to [kotlin](https://kotlinlang.org/) and [spring](https://spring.io/).**
 
@@ -12,7 +12,7 @@ In KT-Robots, you program a battle robot that participates on a square game fiel
 <summary>Install tools & setup code</summary>
 
 ### Install the required tools
-Make sure that you have the following tools installed in your computer.
+Make sure that you have the following tools installed on your computer.
 <details>
 <summary>List of required tools</summary>
 
@@ -60,21 +60,21 @@ From the command line use `gradlew` to run the `deployRobots` task:
 
 This task will 
 - Compile the `lambda-robots` project
-- Deploy the lambda functions to your AWS account in the `us-east-2` (Ohio) region using Terraform
-- The terraform code is located in the `lambda-robots/infrastructure` directory
+- Deploy the Lambda functions to your AWS account in the `us-east-2` (Ohio) region using Terraform
+- The terraform code is in the `lambda-robots/infrastructure` directory
 </details>
 
 <details>
 <summary>Use the InjelliJ Gradle Plugin</summary>
 
-Or use the IntelliJ gradle plugin to execute the task.
+Or use the IntelliJ Gradle plugin to execute the task.
 
 ![deployRobots](images/deployRobots.png)
 </details>
 
 
 
-Once the command has finished running, the output will show you the ARN of the lambda robots.
+Once the command has finished running, the output shows you the ARN of the lambda robots.
 ```bash
 Outputs:
 
@@ -98,7 +98,7 @@ From the command line use `gradlew` to run the `deployServer` task:
 <details>
 <summary>Details</summary>
 
-This task will create and do a few things:
+This task creates and does a few things:
 
 - Compile the server
 - Deploy the game server to your AWS account in the `us-east-2` (Ohio) region using Terraform
@@ -107,23 +107,23 @@ This task will create and do a few things:
 - Pushes the image to the new docker repository
 - Creates a Fargate cluster
 - Creates a service and runs a task exposing port 8080
-- The terraform code is located in the `server/infrastructure` directory
+- The terraform code is in the `server/infrastructure` directory
 
 
 </details>
 
 <details>
 <summary>Getting the task IP Address</summary>
-Once the deployment has finished, you will have to login to AWS to get the server IP:
+Once the deployment has finished, you have to log in to AWS to get the server IP:
 - Amazon ECS
 - Clusters
 - ktrobots-server-cluster
 - Tasks
 - Select the task from the list
 - Copy the Public IP
-- You can also expand the task details and get a link to the cloudwatch logs
+- You can also expand the task details and get a link to the CloudWatch logs
 
-Once you have the IP paste it in your broser usin the port `8080`
+Once you have the IP paste it in your browser using the port `8080.`
 ```bash
 # For example
 http://3.15.171.35:8080/
@@ -146,13 +146,13 @@ Use the **Advance Configuration** to change any default settings.  Use **Clear S
 <details>
 <summary>Develop your attack strategy</summary>
 
-Now that you have deployed all the robots to your account, add the ARN of the `TargetRobot` multiple times to the KT-Robots server to create targets.
+Now that you have deployed all the robots to your account add the ARN of the `TargetRobot` multiple times to the KT-Robots server to create targets.
 
 
 Now update the behavior of `BringYourOwnRobot` to shoot down the target robots. 
 
 ### Use Luck - YosemiteSam 
-For example, you can use luck, like `YosemiteSam`, which shoots in random directions
+For example, you can use luck, like `YosemiteSam`, which shoots in random directions.
 
 ![Yosemite Sam](images/yosemiteSam.png)
 
@@ -161,7 +161,7 @@ For example, you can use luck, like `YosemiteSam`, which shoots in random direct
 
 Yosemite Sam is fast and trigger happy!
 
-This robot chooses a random angle on every turn and fires a missile. It has an extra large engine which helps it avoid attacks and keeps it's distance from the edges of the game board to avoid collisions!
+This robot chooses a random angle on every turn and fires a missile. It has an extra-large engine that helps avoid attacks and keeps its distance from the edges of the game board to avoid collisions!
 
 | Equipment | Type              | Points | Details |
 | --------- | ----------------- | ------ | ------- |
@@ -180,9 +180,9 @@ This robot uses the `scan()` method to find enemies and aim missiles at them.
 <details>
 <summary>HotShot Details</summary>
 
-HotShot is patient and accurate, it hardly ever misses it's target!
+HotShot is patient and accurate; it hardly ever misses its target!
 
-This robot uses the `scan()` method to find targets, if it doesn't find targets it moves to a new location. If it receives damage it initiates an evasive move. 
+This robot uses the `scan()` method to find targets. If it doesn't find targets, it moves to a new location. If it receives damage, it initiates an evasive move. 
 
 | Equipment | Type        | Points | Details |
 | --------- | ----------- | ------ | ------- |
@@ -201,9 +201,9 @@ This robot uses the `scan()` method to find enemies and chases them.
 <details>
 <summary>RoboDog Details</summary>
 
-RoboDog moves at random and scans what is right in front of it, when this dog bites it won't let go!
+RoboDog moves at random and scans what is right in front of it. When this dog bites, it won't let go!
 
-This robot uses the `scan()` method to find targets right in from of it, if it does it adjust it's heading to move towards the target, this dog can hit you with a missile and with collision damage!
+This robot uses the `scan()` method to find targets right in from of it. If it does it adjust it's heading to move towards the target, this dog can hit you with a missile and with collision damage!
 
 | Equipment | Type              | Points | Details |
 | --------- | ----------------- | ------ | ------- |
@@ -222,7 +222,7 @@ This robot just sits down and waits to be hit.
 <details>
 <summary>TargetRobot Details</summary>
 
-Please don't be the target robot, no body wants to be the target robot!
+Please don't be the target robot, and nobody wants to be the target robot!
 
 | Equipment | Type              | Points | Details |
 | --------- | ----------------- | ------ | ------- |
@@ -254,11 +254,7 @@ Now update the behavior of `BringYourOwnRobot` to avoid getting shot.
 <details>
 <summary>Examples</summary>
 
-You can be in continuous motion, like `YosemiteSam`, which zig-zags across the board.
-
-Reacting to damage like `HotShot`. 
-
-Chase and ram into your opponents like `RoboDog`.
+You can be in continuous motion, like `YosemiteSam`, which zig-zags across the board, react to damage like `HotShot`,  or chase and ram into your opponents like `RoboDog`.
 
 Beware that a robot cannot change heading without suddenly stopping if its speed exceeds `Robot.MaxSpeed`.
 </details>
@@ -279,7 +275,7 @@ Consider modifying your robot build by tuning the
 
 Set the proper equipment to suit your attack and evasion strategies. 
 
-**Remember that your build cannot exceed 8 points, or your robot will be disqualified from the competition.**
+**Remember that your build cannot exceed 8 points or your robot will be disqualified from the competition.**
 
 </details>
 
@@ -292,7 +288,7 @@ Set the proper equipment to suit your attack and evasion strategies.
 ![killer-robots](images/killerRobots.jpg)
 
 
-For the boss level, your opponent is every other team! Submit your Robot ARN to final showdown and see how well it fares.
+For the boss level, your opponent is every other team! Submit your robot ARN and see how well it fares.
 
 **May the odds be ever in your favor!**
 </details>
@@ -321,7 +317,7 @@ The base class requires two methods to be implemented:
 
 | Method                                                                              | Description                                                                                                                                                                                                                                                    |
 | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState>`   | This method returns the robot build information, including its name, armor, engine, missile, and radar types, and the robot state object. Note that by default, a build cannot exceed 8 points or the robot will be disqualified at the beginning of the match.|
+| `fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState>`   | This method returns the robot build information, including its name, armor, engine, missile, and radar types, and the robot state object. Note that a build cannot exceed 8 points by default, or the robot will be disqualified at the beginning of the match.
 | `fun getAction(state: LambdaRobotState): Pair<LambdaRobotAction, LambdaRobotState>` | This method returns the actions taken by the robot during the turn and the updated robot state                                                                                                                                                                 |
 
 #### Properties
@@ -404,7 +400,7 @@ The most commonly needed properties are readily available as properties from the
 | `arrivedAtDestination`| `boolean`| Whether or not the robot arrived at it's destination.     |
 
 #### Primary Methods
-The following methods represent the core capabilities of the robot. They are used to move, fire missiles, and scan its surroundings.
+The following methods represent the core capabilities of the robot. They are used to move, fire missiles, and scan their surroundings.
 
 | Method                                       | ReturnType           | Description                                              |
 | -------------------------------------------- | -------------------- | -------------------------------------------------------- |
@@ -415,7 +411,7 @@ The following methods represent the core capabilities of the robot. They are use
 | `getNewHeading(minDistanceToEdge: Int = 100)`| `Int`                | Check if the robot needs to turn based on a minimum distance to the edge and return a new heading if it does.|
 
 #### Support extension functions
-The following methods are provided to make some common operations easier, but do not introduce n
+The following methods are available to make some operations easier:
 
 | LambdaRobotAction Extension Functions                               | ReturnType         | Description                                              |
 | ------------------------------------------------------------------- | ------------------ | -------------------------------------------------------- |
@@ -475,3 +471,12 @@ The default configuration for each is shown in bold font and an asterisk (*).
 | bFG             | 350 meters   | 75 m/s   | 12               | 8              | 4             | 5 sec    | 4      |
 
 </details>
+
+# DON'T FORGET TO CLEAN UP!
+
+There is a cost associated with leaving the ECS Fargate task running, make sure you destroy the stack or set the desired number of tasks to 0. The following commands destroy all resources you created.
+
+```bash
+./gradlew destroyRobots
+./gradlew destroyServer
+```
