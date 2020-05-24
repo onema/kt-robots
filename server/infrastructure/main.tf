@@ -5,6 +5,7 @@ provider "aws" {
   version = ">= 2.52"
   region  = var.region
 }
+data "aws_caller_identity" "current" {}
 
 # ----------------------------------------
 # get the main vpc and subnets
@@ -17,9 +18,6 @@ data "aws_vpc" "main" {
 
 data "aws_subnet_ids" "main" {
   vpc_id = data.aws_vpc.main.id
-//  tags = {
-//    type = "public"
-//  }
 }
 
 
@@ -58,7 +56,7 @@ resource "aws_ecr_repository" "ktrobots_server" {
   }
 
   provisioner "local-exec" {
-    command = "./build-image.sh ${var.region}"
+    command = "./build-image.sh ${data.aws_caller_identity.current.account_id} ${var.region}"
     working_dir = "../"
   }
 }

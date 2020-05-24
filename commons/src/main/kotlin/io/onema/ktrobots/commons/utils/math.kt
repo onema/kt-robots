@@ -17,9 +17,6 @@ import kotlin.math.atan2
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-fun distance(x1: Double, y1: Double, x2: Double, y2: Double): Double =
-    sqrt((x1 - x2).pow(2.0) + (y1 - y2).pow(2.0))
-
 fun normalizeAngle(angle: Double): Double {
     val result = angle % 360
     return when {
@@ -41,7 +38,6 @@ fun normalizeAngle(angle: Double): Double {
  */
 fun angleToXY(obj1: Locatable, obj2: Locatable): Double = angleToXY(obj1.x, obj1.y, obj2.x, obj2.y)
 fun angleToXY(x: Double, y: Double, obj: Locatable): Double = angleToXY(x, y, obj.x, obj.y)
-
 fun angleToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
     return normalizeAngle180(atan2(x1 - x2, y1 - y2) * 180.0 / PI)
 }
@@ -51,7 +47,6 @@ fun angleToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
  */
 fun distanceToXY(obj1: Locatable, obj2: Locatable): Double = distanceToXY(obj1.x, obj1.y, obj2.x, obj2.y)
 fun distanceToXY(x: Double, y: Double, obj: Locatable): Double = distanceToXY(x, y, obj.x, obj.y)
-
 fun distanceToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
     val deltaX = x1 - x2
     val deltaY = y1 - y2

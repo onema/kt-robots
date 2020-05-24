@@ -168,6 +168,7 @@ data class LambdaRobot(
             copy(damage = newDamage, totalCollisions = collisions)
         }
     }
+
     fun doMove(moveData: MoveData): LambdaRobot = copy(x = moveData.x, y = moveData.y, totalTravelDistance = moveData.distance)
 
     fun canFire(): Boolean = reloadCoolDown == 0.0
@@ -242,7 +243,7 @@ data class LambdaRobot(
             return if(isInvalidConfig) {
                 // disqualified
                 val reason = "Invalid configuration type"
-                Pair(robot.copy(status = LambdaRobotStatus.dead), reason)
+                robot.copy(status = LambdaRobotStatus.dead) to reason
             } else {
                 val radar = radarOption.get()
                 val engine = engineOption.get()
@@ -253,10 +254,10 @@ data class LambdaRobot(
                 // Check if build is under the max number of build points
                 return if(totalPoints > game.info.maxBuildPoints) {
                     val reason = "Total points $totalPoints, maxed allowed ${game.info.maxBuildPoints}"
-                    Pair(robot.copy(status = LambdaRobotStatus.dead), reason)
+                    robot.copy(status = LambdaRobotStatus.dead) to reason
                 } else{
                     val description = "Radar: ${radar.name}, Engine: ${engine.name}, Armor: ${armor.name}, Missile: ${missile.name}"
-                    Pair(robot.copy(radar = radar, engine = engine, armor = armor, missile = missile), description)
+                    robot.copy(radar = radar, engine = engine, armor = armor, missile = missile) to description
                 }
             }
 

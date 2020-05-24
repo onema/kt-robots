@@ -22,6 +22,9 @@ interface LambdaRobotFunction: RequestHandler<LambdaRobotRequest, LambdaRobotRes
     //--- Methods ---
     fun handle(request: LambdaRobotRequest): LambdaRobotResponse
 
+    /**
+     * Main entry point for the lambda function
+     */
     override fun handleRequest(request: LambdaRobotRequest, context: Context): LambdaRobotResponse {
         return handle(request)
     }

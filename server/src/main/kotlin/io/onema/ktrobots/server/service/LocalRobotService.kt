@@ -29,14 +29,19 @@ class LocalRobotService : RobotService<LambdaRobotResponse> {
      * Invoke Local function
      */
     override fun callRobot(robotResourceName: String, request: LambdaRobotRequest): LambdaRobotResponse {
-        val id = request.lambdaRobot.id
-        if (!robots.containsKey(id) || id.isEmpty()) {
-            val robotClass = Class.forName(robotResourceName).kotlin
-            val robot: Robot = robotClass.createInstance() as Robot
-            robots[id] = robot
+        return try {
+            val id = request.lambdaRobot.id
+            if (!robots.containsKey(id) || id.isEmpty()) {
+                val robotClass = Class.forName(robotResourceName).kotlin
+                val robot: Robot = robotClass.createInstance() as Robot
+                robots[id] = robot
+            }
+            val robot = robots[id] ?: throw Exception("Unable to find robot with id $id")
+            robot.handle(request)
+        } catch (e: Exception) {
+            LambdaRobotResponse(hasError = true, errorMessage = e.message ?: "An error occurred but could not get any information from the exception.")
+
         }
-        val robot = robots[id] ?: throw Exception("Unable to find robot with id $id")
-        return robot.handle(request)
     }
 
     /**

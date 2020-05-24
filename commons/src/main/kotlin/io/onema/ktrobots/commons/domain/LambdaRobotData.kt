@@ -15,6 +15,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
+import kotlin.reflect.KClass
 
 /**
  * Lambda robot request data classes
@@ -197,7 +198,6 @@ data class LambdaRobotStateRecord(
 
     @DynamoDBAttribute(attributeName = "expire")
     var expire: Long = (System.currentTimeMillis()/1000L) + 300 // Set TTL to 5 min
-
 )
 
 @DynamoDBDocument
@@ -210,4 +210,12 @@ data class LambdaRobotState(
     var scanResolution: Double = 0.0,
     var gotoX: Double = 0.0,
     var gotoY: Double = 0.0
-)
+) {
+    /**
+     * Create a new object with the initialized status
+     */
+    fun initialize(): LambdaRobotState {
+        return this.copy(initialized = true)
+    }
+
+}

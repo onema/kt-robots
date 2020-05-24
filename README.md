@@ -74,7 +74,7 @@ Or use the IntelliJ gradle plugin to execute the task.
 
 
 Once the command has finished running, the output will show you the ARN of the lambda robots.
-```
+```bash
 Outputs:
 
 HotShotRobotArn = arn:aws:lambda:us-east-2:123456789012:function:HotShot
@@ -123,7 +123,7 @@ Once the deployment has finished, you will have to login to AWS to get the serve
 - You can also expand the task details and get a link to the cloudwatch logs
 
 Once you have the IP paste it in your broser usin the port `8080`
-```
+```bash
 # For example
 http://3.15.171.35:8080/
 ```
@@ -198,7 +198,7 @@ This robot uses the `scan()` method to find enemies and chases them.
 ![RoboDog](images/roboDog.jpg)
 
 <details>
-<summary>RoboDog Details</summ4ary>
+<summary>RoboDog Details</summary>
 
 RoboDog moves at random and scans what is right in front of it, when this dog bites it won't let go!
 
@@ -411,6 +411,7 @@ The following methods represent the core capabilities of the robot. They are use
 | `angleToXY(x: Double, y: Double)`            | `Double`             | Determine the angel in degrees relative to the current robot position. Returns a value between -180 and 180 degrees.|
 | `distanceToXY(x: Double, y: Double)`         | `Double`             | Determine the distance to X, Y relative to the current robot position.|
 | `normalizeAngle(angle: Double)`              | `Double`             | Normalize angle to be between -180 and 180.|
+| `getNewHeading(minDistanceToEdge: Int = 100)`| `Int`                | Check if the robot needs to turn based on a minimum distance to the edge and return a new heading if it does.|
 
 #### Support extension functions
 The following methods are provided to make some common operations easier, but do not introduce n

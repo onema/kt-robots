@@ -44,13 +44,19 @@ data class Game(
     // game characteristics
     var info: GameInfo = GameInfo(),
 
-    var robotTimeoutSeconds: Double = 0.0,
-    var minRobotStartDistance: Double = 0.0
+    var robotTimeoutSeconds: Double = 15.0,
+    var minRobotStartDistance: Double = 50.0
 
 ) {
 
+    /**
+     * Convenience method to count how many robots in the game are still alive
+     */
     fun aliveCount(): Int = robots.count {it.status == LambdaRobotStatus.alive }
 
+    /**
+     * Upadte the robot
+     */
     fun updateRobot(newRobot: LambdaRobot): Game {
         // Remove the old robot and update it with the new one
         val updatedRobots = robots.filter {it.id != newRobot.id} + newRobot
