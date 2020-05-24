@@ -15,7 +15,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
-import kotlin.reflect.KClass
 
 /**
  * Lambda robot request data classes
@@ -28,6 +27,11 @@ data class LambdaRobotRequest(
     var gameId: String = ""
 )
 
+/**
+ * Type of command send to the robot by the server, during game
+ * startup the getBuild action is used, after that the
+ * getAction is used
+ */
 enum class LambdaRobotCommand {
     getBuild,
     getAction
@@ -43,6 +47,9 @@ data class LambdaRobotResponse(
     var errorMessage: String = ""
 )
 
+/**
+ * The build of the robot, includes the types of missile, radar, armor and engine
+ */
 data class LambdaRobotBuild  (
 
     /// Name of Lambda-Robot.
@@ -61,6 +68,9 @@ data class LambdaRobotBuild  (
     var missile: LambdaRobotMissileType = LambdaRobotMissileType.dart
 )
 
+/**
+ * Equipment type enum
+ */
 enum class LambdaRobotRadarType {
 
     /**
@@ -89,6 +99,9 @@ enum class LambdaRobotRadarType {
     ultraLongRange
 }
 
+/**
+ * Equipment type enum
+ */
 enum class LambdaRobotEngineType {
 
     /**
@@ -117,6 +130,9 @@ enum class LambdaRobotEngineType {
     extraLarge
 }
 
+/**
+ * Equipment type enum
+ */
 enum class LambdaRobotArmorType {
 
     /**
@@ -145,6 +161,9 @@ enum class LambdaRobotArmorType {
     ultraHeavy
 }
 
+/**
+ * Equipment type enum
+ */
 enum class LambdaRobotMissileType {
 
     /**
@@ -200,6 +219,9 @@ data class LambdaRobotStateRecord(
     var expire: Long = (System.currentTimeMillis()/1000L) + 300 // Set TTL to 5 min
 )
 
+/**
+ * Simple class to help keep track of the state of the robot
+ */
 @DynamoDBDocument
 data class LambdaRobotState(
     var initialized: Boolean = false,

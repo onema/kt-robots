@@ -13,6 +13,9 @@ package io.onema.ktrobots.commons.domain
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 
+/**
+ * Missile definition, default values and concrete implementations
+ */
 @DynamoDBDocument
 open class Missile(
     /**
@@ -117,6 +120,9 @@ data class BFG(override var name: String = "BFG") : Missile(
     reloadCooldown = 5.0
 )
 
+/**
+ * Radar definition, default values and concrete implementations
+ */
 @DynamoDBDocument
 open class Radar(
     open var name: String = "",
@@ -173,6 +179,9 @@ data class UltraLongRange(override var name: String =  "ultra long range") : Rad
     maxResolution = 5.0
 )
 
+/**
+ * Engine definition, default values and concrete implementations
+ */
 @DynamoDBDocument
 open class Engine(
     open var name: String = "",
@@ -229,7 +238,9 @@ data class ExtraLarge(override var name: String = "ExtraLarge") : Engine(
     acceleration = 13.0
 )
 
-
+/**
+ * Armor definition, default values and concrete implementations
+ */
 @DynamoDBDocument
 open class Armor(
     open var name: String = "",

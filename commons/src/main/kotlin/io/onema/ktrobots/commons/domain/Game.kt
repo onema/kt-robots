@@ -15,6 +15,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped
 
+/**
+ * Enum of the status of the game
+ */
 enum class GameStatus {
     undefined,
     start,
@@ -23,12 +26,19 @@ enum class GameStatus {
     error
 }
 
+/**
+ * Interface for objects that have a position in the game board such as missiles and robots
+ */
 interface Locatable {
     var id: String
     var x: Double
     var y: Double
 }
 
+/**
+ * Main Game data class. This class contains all the information about the
+ * game for each turn
+ */
 @DynamoDBDocument
 data class Game(
 
@@ -76,6 +86,9 @@ data class Game(
     fun cleanupMissiles(): Game = copy(missiles = missiles.filter { it.status != MissileStatus.destroyed })
 }
 
+/**
+ * Game mechanics information
+ */
 @DynamoDBDocument
 data class GameInfo(
     /**
@@ -134,6 +147,9 @@ data class GameInfo(
     var apiUrl: String = ""
 )
 
+/**
+ * Status of the missile
+ */
 enum class MissileStatus{
     undefined,
     flying,
@@ -147,6 +163,9 @@ enum class MissileStatus{
     }
 }
 
+/**
+ * Base class for the Missile. This class implements locatable
+ */
 @DynamoDBDocument
 data class LambdaRobotMissile(
     override var id: String = "",
@@ -169,6 +188,9 @@ data class LambdaRobotMissile(
 ) : Locatable {
     fun doMove(moveData: MoveData): LambdaRobotMissile = copy(x = moveData.x, y = moveData.y, distance = moveData.distance)
 
+    /**
+     * Depending on the status of the missile, this method would create a copy with the corresponding updated status
+     */
     fun updateExplodeStatus(): LambdaRobotMissile {
         return when(status) {
             MissileStatus.flying -> this
@@ -180,13 +202,18 @@ data class LambdaRobotMissile(
     }
 }
 
+/**
+ * Class to send messages to the game client
+ */
 @DynamoDBDocument
 data class Message(
     var gameTurn: Int = 0,
     var text: String = ""
 )
 
-
+/**
+ * Helper class to help keep track of a moving object.
+ */
 data class MoveData(
     val x: Double = 0.0,
     val y: Double = 0.0,

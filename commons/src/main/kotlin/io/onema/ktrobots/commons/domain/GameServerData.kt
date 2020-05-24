@@ -11,6 +11,9 @@
 
 package io.onema.ktrobots.commons.domain
 
+/**
+ * Start game request sent by the client
+ */
 data class StartGameRequest(
     var action: String,
     var robotArns: List<String> = listOf(),
@@ -29,10 +32,16 @@ data class StartGameRequest(
     var apiHost: String = ""
 )
 
+/**
+ * Stop game request sent by the client
+ */
 data class StopGameRequest(
     var action: String = "",
     var gameId: String = ""
 )
 
+/**
+ * Response object for the start game request
+ */
 data class GameResponse(var game: Game)
 

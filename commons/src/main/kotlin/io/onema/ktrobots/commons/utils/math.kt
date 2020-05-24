@@ -17,6 +17,9 @@ import kotlin.math.atan2
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+/**
+ * Normalizes the angle in degrees
+ */
 fun normalizeAngle(angle: Double): Double {
     val result = angle % 360
     return when {

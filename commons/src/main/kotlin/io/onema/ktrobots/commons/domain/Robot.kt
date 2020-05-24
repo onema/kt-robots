@@ -169,12 +169,24 @@ data class LambdaRobot(
         }
     }
 
+    /**
+     * Update the possition and total distance traveled by the robot
+     */
     fun doMove(moveData: MoveData): LambdaRobot = copy(x = moveData.x, y = moveData.y, totalTravelDistance = moveData.distance)
 
+    /**
+     * Check if the reload cool-down is down to zero and return true, false otherwise
+     */
     fun canFire(): Boolean = reloadCoolDown == 0.0
 
+    /**
+     * Increase the damage dealt by this robot
+     */
     fun addDamageDealt(damage: Double) = copy(totalDamageDealt = totalDamageDealt + damage)
 
+    /**
+     * Add a hit to the totalMissileHItCount
+     */
     fun addHit() = copy(totalMissileHitCount = totalMissileHitCount + 1)
 
     override fun toString(): String {
@@ -183,6 +195,9 @@ data class LambdaRobot(
 
     companion object {
 
+        /**
+         * Generate a new game id for the robot
+         */
         fun generateId(index: Int, gameId: String): String = "$gameId:Robot$index"
 
         /**
@@ -265,6 +280,9 @@ data class LambdaRobot(
     }
 }
 
+/**
+ * Status of the robot, either dead or alive
+ */
 @DynamoDBDocument
 enum class LambdaRobotStatus {
     undefined,
