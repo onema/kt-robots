@@ -8,6 +8,9 @@ import io.onema.ktrobots.commons.domain.ScanEnemiesRequest
 import io.onema.ktrobots.commons.domain.ScanEnemiesResponse
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Simple wrapper to make calls to the game server to scan for targets
+ */
 class ScanClient(
     private val apiUrl: String,
     private val gameId: String,
