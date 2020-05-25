@@ -21,7 +21,9 @@ import java.util.*
  */
 @EnableScan
 interface GameTableRepository : CrudRepository<GameRecord, String> {
-    
+
+    //--- Methods ---
+
     /**
      * Method to get the game state by primary key
      */

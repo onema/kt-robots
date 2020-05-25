@@ -233,6 +233,9 @@ data class LambdaRobotState(
     var gotoX: Double = 0.0,
     var gotoY: Double = 0.0
 ) {
+
+    //--- Methods ---
+
     /**
      * Create a new object with the initialized status
      */

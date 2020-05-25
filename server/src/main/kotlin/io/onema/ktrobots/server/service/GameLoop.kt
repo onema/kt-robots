@@ -29,8 +29,12 @@ import org.springframework.messaging.simp.SimpMessagingTemplate
  */
 class GameLoop<TRobot : RobotService<TResponse>, TResponse>(val template: SimpMessagingTemplate, val repo: GameTableRepository, robotService: TRobot) {
 
+    //--- Fields ---
     val log: Logger = LoggerFactory.getLogger(GameLoop::class.java)
+
     val logic = GameLogic(robotService)
+
+    //--- Methods ---
 
     /**
      * Start the game loop

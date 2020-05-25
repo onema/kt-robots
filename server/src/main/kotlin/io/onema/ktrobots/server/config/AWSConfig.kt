@@ -25,6 +25,9 @@ import software.amazon.awssdk.services.lambda.LambdaAsyncClient
 @Configuration
 @EnableDynamoDBRepositories(basePackages = ["io.onema.ktrobots.server.data"])
 class AWSConfig {
+
+    //--- Methods ---
+
     /**
      * Get a new DynamoDB client
      */

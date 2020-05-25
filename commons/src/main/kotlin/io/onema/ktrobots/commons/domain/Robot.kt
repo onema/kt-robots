@@ -155,6 +155,8 @@ data class LambdaRobot(
     var missile: Missile = DefaultMissile()
 ) : Locatable {
 
+    //--- Methods ---
+
     var maxSpeed: Double = engine.maxSpeed + armor.speedModifier
 
     /**

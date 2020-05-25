@@ -21,8 +21,10 @@ import io.onema.ktrobots.lambda.Robot
  */
 class BringYourOwnRobot : Robot(), LambdaRobotFunction {
 
+    //--- Fields ---
     private val NAME = "BringYourOwnRobot"
 
+    //--- Methods ---
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return LambdaRobotBuild(
             name = NAME,

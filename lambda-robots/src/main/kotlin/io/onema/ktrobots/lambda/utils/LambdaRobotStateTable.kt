@@ -11,6 +11,7 @@ import java.util.*
  */
 class LambdaRobotStateTable {
 
+    //--- Properties ---
     /**
      * DynamoDBMapper with table override
      */
@@ -31,6 +32,7 @@ class LambdaRobotStateTable {
         )
 
 
+    //--- Methods ---
     /**
      * Get an element by ID from the game state table
      */

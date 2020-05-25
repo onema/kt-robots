@@ -21,6 +21,8 @@ import kotlin.random.Random
  * to be very close to it's target before it chases
  */
 class RoboDog : Robot(), LambdaRobotFunction {
+
+    //--- Methods ---
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return LambdaRobotBuild(
             name = "RoboDog",

@@ -59,6 +59,8 @@ data class Game(
 
 ) {
 
+    //--- Methods ---
+
     /**
      * Convenience method to count how many robots in the game are still alive
      */
@@ -195,6 +197,9 @@ data class LambdaRobotMissile(
     var nearHitDamageBonus: Double = 0.0,
     var farHitDamageBonus: Double = 0.0
 ) : Locatable {
+
+    //--- Methods ---
+
     /**
      * Create a copy of the object with the updated move data
      */

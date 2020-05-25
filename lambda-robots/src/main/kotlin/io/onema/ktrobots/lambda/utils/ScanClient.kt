@@ -17,6 +17,8 @@ class ScanClient(
     private val robotId: String,
     private val httpClient: HttpClient
 ) {
+    //--- Methods ---
+
     /**
      * Scan client, it sends messages to the game server to scan for other
      */

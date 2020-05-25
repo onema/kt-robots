@@ -20,6 +20,8 @@ import kotlin.random.Random
  * YosemiteSam shoots at random directions and zig-zags around the screen
  */
 class YosemiteSam : Robot(), LambdaRobotFunction {
+
+    //--- Methods ---
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return Pair(LambdaRobotBuild(
             name = "YosemiteSam",

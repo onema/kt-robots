@@ -39,10 +39,13 @@ class GameController(
     val lambda: LambdaAsyncClient,
     val environment: Environment
 ) {
+
+    //--- Fields ---
     val log: Logger = LoggerFactory.getLogger(GameController::class.java)
 
     val loopJobs = mutableMapOf<String, Job>()
 
+    //--- Methods ---
     /**
      * Start a new game
      */

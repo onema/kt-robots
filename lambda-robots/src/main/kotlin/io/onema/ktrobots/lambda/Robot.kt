@@ -37,29 +37,31 @@ import kotlin.random.Random
  */
 abstract class Robot {
 
-    //--- Fields ---
-    protected lateinit var robot: LambdaRobot
-
-    protected lateinit var gameInfo: GameInfo
-
+    //--- Properties ---
     private val mapper: ObjectMapper
         get() = jacksonObjectMapper()
 
     private val table: LambdaRobotStateTable
         get() = LambdaRobotStateTable()
 
+    //--- Fields ---
+    protected lateinit var robot: LambdaRobot
+
+    protected lateinit var gameInfo: GameInfo
+
     private val httpClient = HttpClient() {
         install(JsonFeature) {
             serializer = JacksonSerializer()
         }
         install(HttpTimeout) {
-            requestTimeoutMillis = 120000
+            requestTimeoutMillis = 700
         }
     }
 
     private lateinit var scanClient: ScanClient
 
     //--- Methods ---
+
     /**
      * Get the build of the robot. Returns a lambda robot build and lambda robot state pair
      */

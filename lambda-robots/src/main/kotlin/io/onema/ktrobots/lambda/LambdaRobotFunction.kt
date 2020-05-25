@@ -23,6 +23,8 @@ import io.onema.ktrobots.commons.domain.LambdaRobotResponse
  */
 interface LambdaRobotFunction: RequestHandler<LambdaRobotRequest, LambdaRobotResponse> {
 
+    //--- Methods ---
+
     /**
      * Main entry point of the robot logic
      */

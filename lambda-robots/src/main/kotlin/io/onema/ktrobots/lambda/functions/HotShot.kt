@@ -26,6 +26,8 @@ import kotlin.random.Random
  * HotShot will only shoot if the cooldawn is 0 and a target has been detected
  */
 class HotShot : Robot(), LambdaRobotFunction {
+
+    //--- Methods ---
     override fun getBuild(state: LambdaRobotState): Pair<LambdaRobotBuild, LambdaRobotState> {
         return LambdaRobotBuild(
             name = "HotShot",

@@ -26,9 +26,11 @@ import kotlin.reflect.full.createInstance
 @Service
 class LocalRobotService : RobotService<LambdaRobotResponse> {
 
+    //--- Fields ---
     val robots = mutableMapOf<String, Robot>()
-    val log: Logger = LoggerFactory.getLogger(LocalRobotService::class.java)
+
     // --- Methods ---
+
     /**
      * Invoke Local function. The robotResourceName is the fully qualified name of the class including namespace
      * and class name.
@@ -53,4 +55,8 @@ class LocalRobotService : RobotService<LambdaRobotResponse> {
      * Deserialize invocation response object
      */
     override fun deserialize(response: LambdaRobotResponse): LambdaRobotResponse = response
+
+    companion object {
+        protected val log: Logger = LoggerFactory.getLogger(GameLogic::class.java)
+    }
 }

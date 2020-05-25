@@ -19,6 +19,8 @@ import io.onema.ktrobots.commons.domain.LambdaRobotResponse
  */
 interface RobotService<AResponse> {
 
+    // --- Methods ---
+
     /**
      * Make a call to the robot using the robot identifier and the LambdaRobotRequest
      */

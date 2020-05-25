@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/scan")
 class ScanController(val repo: GameTableRepository) {
 
+    //--- Methods ---
+
     /**
      * Scan for enemies within the given scan heading and resolution.
      */

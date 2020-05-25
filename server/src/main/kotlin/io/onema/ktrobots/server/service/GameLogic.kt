@@ -26,7 +26,10 @@ import kotlin.streams.toList
  */
 class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotService: TRobot) {
 
+    //--- Fields ---
     private val gameMessages = mutableListOf<Message>()
+
+    //--- Methods ---
 
     /**
      * Initialize the game by getting each of the robots build and placing them on the board
