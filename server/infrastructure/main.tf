@@ -98,10 +98,12 @@ module "fargate" {
   task_container_port = 8080
 
   desired_count = 1
-//  task_definition_cpu = 2048
+  // See the combination of possible values here:
+  // https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
   task_definition_cpu = 512
-//  task_definition_memory = 4096
+  //task_definition_cpu = 2048
   task_definition_memory = 1024
+  //task_definition_memory = 4096
 
   task_container_environment = {
     ENV = "dev"
