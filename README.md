@@ -50,7 +50,7 @@ cd kt-robots
 <details>
 <summary>Deploy lambda functions and server</summary>
  
-### Deploy using the Terraform
+### Deploy using Terraform
 From the command line use `gradlew` to run the `deployRobots` task: 
 ```bash
 ./gradlew deployRobots
