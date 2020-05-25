@@ -474,7 +474,13 @@ The default configuration for each is shown in bold font and an asterisk (*).
 
 # DON'T FORGET TO CLEAN UP!
 
-There is a cost associated with leaving the ECS Fargate task running, make sure you destroy the stack or set the desired number of tasks to 0. The following commands destroy all resources you created.
+The ECS Fargate task run on spot instances and this is the cost for running the server:
+
+- 512 vCPU $0.00639685 per hour
+- 1024 MiB $0.00140484 per hour
+
+While it will cost you cents to run this task for a few hours, you want to turn it of after you are done with the challenge.
+Use the following commands to destroy all the resources:
 
 ```bash
 ./gradlew destroyRobots
