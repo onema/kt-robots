@@ -24,12 +24,17 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.simp.SimpMessagingTemplate
 
-
+/**
+ * Main game loop, this takes care of interacting with the game logic on every turn
+ */
 class GameLoop<TRobot : RobotService<TResponse>, TResponse>(val template: SimpMessagingTemplate, val repo: GameTableRepository, robotService: TRobot) {
 
     val log: Logger = LoggerFactory.getLogger(GameLoop::class.java)
     val logic = GameLogic(robotService)
 
+    /**
+     * Start the game loop
+     */
     suspend fun start(game: Game) = coroutineScope {
         log.info("Game has started!")
         try {
@@ -47,6 +52,9 @@ class GameLoop<TRobot : RobotService<TResponse>, TResponse>(val template: SimpMe
         }
     }
 
+    /**
+     * Turn calls the appropriate method based on the game state on each turn
+     */
     fun turn(turnNumber: Int, gameId: String): Game {
         // Get new game state from DB
         val gameRecord: GameRecord = repo.findByPrimaryKey(gameId).orElseThrow{ CancellationException("No game found") }

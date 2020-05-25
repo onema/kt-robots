@@ -31,6 +31,10 @@ import kotlin.math.sqrt
 import kotlin.random.Random
 
 
+/**
+ * Base robot class. This has the entry point to the robot and is in charge of loading and saving it's state
+ * It also provides several convenience methods including a scan method to talk to the game server.
+ */
 abstract class Robot {
 
     //--- Fields ---

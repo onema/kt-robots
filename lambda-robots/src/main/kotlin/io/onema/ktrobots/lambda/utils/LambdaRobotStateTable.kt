@@ -6,6 +6,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig
 import io.onema.ktrobots.commons.domain.LambdaRobotStateRecord
 import java.util.*
 
+/**
+ * Wrapper class to get elements from the robot state table and save the robot state
+ */
 class LambdaRobotStateTable {
 
     /**

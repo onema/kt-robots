@@ -57,6 +57,9 @@ open class Missile(
 )
 
 
+/**
+ * Default definition
+ */
 @DynamoDBDocument
 data class DefaultMissile(override var name: String = "default") : Missile(name)
 
@@ -151,6 +154,9 @@ open class Radar(
     var maxResolution: Double = 10.0
 )
 
+/**
+ * Default definition
+ */
 @DynamoDBDocument
 data class DefaultRadar(override var name: String = "default") : Radar(name)
 
@@ -224,7 +230,9 @@ open class Engine(
     var acceleration: Double = 10.0
 )
 
-
+/**
+ * Default definition
+ */
 @DynamoDBDocument
 data class DefaultEngine(override var name: String = "default") : Engine(name)
 
@@ -316,8 +324,9 @@ open class Armor(
     var speedModifier: Double = 0.0
 )
 
-
-
+/**
+ * Default definition
+ */
 @DynamoDBDocument
 data class DefaultArmor(override var name: String = "default") : Armor(name)
 
@@ -333,7 +342,6 @@ data class UltraLight(override var name: String = "ultra light") : Armor(
     collisionDamage = 10.0,
     speedModifier = 35.0,
     deceleration = 30.0
-
 )
 
 /**

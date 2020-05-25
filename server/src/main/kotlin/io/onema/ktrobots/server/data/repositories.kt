@@ -21,6 +21,14 @@ import java.util.*
  */
 @EnableScan
 interface GameTableRepository : CrudRepository<GameRecord, String> {
+    
+    /**
+     * Method to get the game state by primary key
+     */
     fun findByPrimaryKey(pk: String): Optional<GameRecord>
+
+    /**
+     * Method to delete the game state by primary key
+     */
     fun deleteBy(pk: String)
 }
