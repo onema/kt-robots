@@ -17,6 +17,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped
 import java.util.*
 
+/**
+ * Main lambda robot object, this holds all the information for the robot
+ */
 @DynamoDBDocument
 data class LambdaRobot(
     /**
@@ -179,7 +182,7 @@ data class LambdaRobot(
     }
 
     /**
-     * Update the possition and total distance traveled by the robot
+     * Update the position and total distance traveled by the robot
      */
     fun doMove(moveData: MoveData): LambdaRobot = copy(x = moveData.x, y = moveData.y, totalTravelDistance = moveData.distance)
 

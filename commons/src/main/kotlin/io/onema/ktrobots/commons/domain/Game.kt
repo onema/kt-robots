@@ -165,6 +165,9 @@ enum class MissileStatus{
     destroyed;
 
     companion object {
+        /**
+         * Convenience function to get a list of all the exploding statuses
+         */
         fun explodingStatus(): List<MissileStatus> = listOf(explodingFar, explodingNear, explodingDirect)
     }
 }
@@ -192,6 +195,9 @@ data class LambdaRobotMissile(
     var nearHitDamageBonus: Double = 0.0,
     var farHitDamageBonus: Double = 0.0
 ) : Locatable {
+    /**
+     * Create a copy of the object with the updated move data
+     */
     fun doMove(moveData: MoveData): LambdaRobotMissile = copy(x = moveData.x, y = moveData.y, distance = moveData.distance)
 
     /**
