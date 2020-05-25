@@ -98,8 +98,10 @@ module "fargate" {
   task_container_port = 8080
 
   desired_count = 1
-  task_definition_cpu = 2048
-  task_definition_memory = 4096
+//  task_definition_cpu = 2048
+  task_definition_cpu = 512
+//  task_definition_memory = 4096
+  task_definition_memory = 1024
 
   task_container_environment = {
     ENV = "dev"
