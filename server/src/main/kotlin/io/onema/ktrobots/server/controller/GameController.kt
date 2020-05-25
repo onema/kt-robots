@@ -43,6 +43,9 @@ class GameController(
 
     val loopJobs = mutableMapOf<String, Job>()
 
+    /**
+     * Start a new game
+     */
     @MessageMapping("/start")
     @SendTo("/topic/game")
     fun startGame(req: StartGameRequest): GameResponse {
@@ -73,10 +76,13 @@ class GameController(
             when(req.robotType) {
                 "lambda" -> {
 
+                    // Start a new Lambda game loop
                     val lambdaGameLoop = GameLoop(template, repo, LambdaRobotService(lambda))
                     lambdaGameLoop.start(game)
                 }
                 else -> {
+
+                    // Start a new local game loop
                     val localGameLoop = GameLoop(template, repo, LocalRobotService())
                     localGameLoop.start(game)
                 }
@@ -85,6 +91,10 @@ class GameController(
         return GameResponse(game)
     }
 
+    /**
+     * Force to stop the current game, this will cancelAndJoin the running gameloop and delete the
+     * DynamoDB record for the game.
+     */
     @MessageMapping("/stop")
     @SendTo("/topic/game")
     fun gameStop(req: StopGameRequest): GameResponse {
