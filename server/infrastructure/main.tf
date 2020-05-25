@@ -39,6 +39,10 @@ resource "aws_security_group_rule" "task_ingress_8080" {
 # ----------------------------------------
 resource "aws_ecs_cluster" "cluster" {
   name = "${var.name_prefix}-cluster"
+  capacity_providers = ["FARGATE_SPOT"]
+  default_capacity_provider_strategy {
+    capacity_provider = "FARGATE_SPOT"
+  }
 }
 
 # ----------------------------------------
