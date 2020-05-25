@@ -84,7 +84,7 @@ YosemiteSamRobotArn = arn:aws:lambda:us-east-2:1234567890120:function:YosemiteSa
 YourRobotARN = arn:aws:lambda:us-east-2:123456789012:function:BringYourOwnRobot
 ```
 
-The `BringYourOwnRobot` is the robot you will be working on!
+The `YourRobotARN` is the robot you will be working on!
 
 > **NOTE:** 
 > 
