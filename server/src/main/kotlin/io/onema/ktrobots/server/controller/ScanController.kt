@@ -30,6 +30,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/scan")
 class ScanController(val repo: GameTableRepository) {
 
+    /**
+     * Scan for enemies within the given scan heading and resolution.
+     */
     @PostMapping
     fun scan(@RequestBody request: ScanEnemiesRequest): ScanEnemiesResponse {
         val gameRecord: GameRecord = repo.findByPrimaryKey(request.gameId).orElseThrow{ RuntimeException("Game ${request.gameId} not found") }

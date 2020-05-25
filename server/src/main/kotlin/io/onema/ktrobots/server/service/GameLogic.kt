@@ -21,6 +21,9 @@ import kotlin.math.*
 import kotlin.random.Random
 import kotlin.streams.toList
 
+/**
+ * Main logic for the game
+ */
 class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotService: TRobot) {
 
     private val gameMessages = mutableListOf<Message>()
