@@ -17,8 +17,15 @@ import io.onema.ktrobots.commons.domain.LambdaRobotRequest
 import io.onema.ktrobots.commons.domain.LambdaRobotResponse
 
 
+/**
+ * Simple interface to enable robot function to work with AWS Lambda default "handleRequest" method.
+ * Any robot that wants to work in AWS lambda just has to implement this interface.
+ */
 interface LambdaRobotFunction: RequestHandler<LambdaRobotRequest, LambdaRobotResponse> {
 
+    /**
+     * Main entry point of the robot logic
+     */
     fun handle(request: LambdaRobotRequest): LambdaRobotResponse
 
     /**

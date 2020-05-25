@@ -60,7 +60,9 @@ open class Missile(
 @DynamoDBDocument
 data class DefaultMissile(override var name: String = "default") : Missile(name)
 
-
+/**
+ * Definition of a Dart missile, it is quick has a long range but deals very little damage
+ */
 @DynamoDBDocument
 data class Dart(override var name: String = "dart") : Missile(
     points = 0,
@@ -73,6 +75,9 @@ data class Dart(override var name: String = "dart") : Missile(
 )
 
 
+/**
+ * Definition of an Arrow missile.
+ */
 @DynamoDBDocument
 data class Arrow(override var name: String = "arrow") : Missile(
     points = 1,
@@ -85,6 +90,9 @@ data class Arrow(override var name: String = "arrow") : Missile(
 )
 
 
+/**
+ * Definition of an Javelin missile.
+ */
 @DynamoDBDocument
 data class Javelin(override var name: String = "javelin") : Missile(
     points = 2,
@@ -96,7 +104,9 @@ data class Javelin(override var name: String = "javelin") : Missile(
     reloadCooldown = 2.0
 )
 
-
+/**
+ * Definition of a Cannon missile.
+ */
 @DynamoDBDocument
 data class Cannon(override var name: String = "cannon") : Missile(
     points = 3,
@@ -109,6 +119,9 @@ data class Cannon(override var name: String = "cannon") : Missile(
 )
 
 
+/**
+ * Definition of a BFG missile.
+ */
 @DynamoDBDocument
 data class BFG(override var name: String = "BFG") : Missile(
     points = 4,
@@ -138,12 +151,13 @@ open class Radar(
     var maxResolution: Double = 10.0
 )
 
-
-
 @DynamoDBDocument
 data class DefaultRadar(override var name: String = "default") : Radar(name)
 
 
+/**
+ * Definition of an UtraShortRange radar
+ */
 @DynamoDBDocument
 data class UltraShortRange(override var name: String =  "ultra short range") : Radar(
     points = 0,
@@ -151,6 +165,9 @@ data class UltraShortRange(override var name: String =  "ultra short range") : R
     maxResolution = 45.0
 )
 
+/**
+ * Definition of an ShortRange radar
+ */
 @DynamoDBDocument
 data class ShortRange(override var name: String =  "short range") : Radar(
     points = 1,
@@ -158,6 +175,9 @@ data class ShortRange(override var name: String =  "short range") : Radar(
     maxResolution = 20.0
 )
 
+/**
+ * Definition of an MidRange radar
+ */
 @DynamoDBDocument
 data class MidRange(override var name: String =  "mid range") : Radar(
     points = 2,
@@ -165,6 +185,9 @@ data class MidRange(override var name: String =  "mid range") : Radar(
     maxResolution = 10.0
 )
 
+/**
+ * Definition of an LongRange radar
+ */
 @DynamoDBDocument
 data class LongRange(override var name: String =  "long range") : Radar(
     points = 3,
@@ -172,6 +195,9 @@ data class LongRange(override var name: String =  "long range") : Radar(
     maxResolution = 8.0
 )
 
+/**
+ * Definition of an UltraLongRange radar
+ */
 @DynamoDBDocument
 data class UltraLongRange(override var name: String =  "ultra long range") : Radar(
     points = 4,
@@ -202,7 +228,9 @@ open class Engine(
 @DynamoDBDocument
 data class DefaultEngine(override var name: String = "default") : Engine(name)
 
-
+/**
+ * Definition of an Economy class engine.
+ */
 @DynamoDBDocument
 data class Economy(override var name: String = "economy") : Engine(
     points = 0,
@@ -210,6 +238,9 @@ data class Economy(override var name: String = "economy") : Engine(
     acceleration = 7.0
 )
 
+/**
+ * Definition of an Compact class engine.
+ */
 @DynamoDBDocument
 data class Compact(override var name: String = "compact") : Engine(
     points = 1,
@@ -217,6 +248,9 @@ data class Compact(override var name: String = "compact") : Engine(
     acceleration = 8.0
 )
 
+/**
+ * Definition of an Standard class engine.
+ */
 @DynamoDBDocument
 data class Standard(override var name: String = "standard") : Engine(
     points = 2,
@@ -224,6 +258,9 @@ data class Standard(override var name: String = "standard") : Engine(
     acceleration = 10.0
 )
 
+/**
+ * Definition of an Large class engine.
+ */
 @DynamoDBDocument
 data class Large(override var name: String = "large") : Engine(
     points = 3,
@@ -231,6 +268,9 @@ data class Large(override var name: String = "large") : Engine(
     acceleration = 12.0
 )
 
+/**
+ * Definition of an ExtraLarge class engine.
+ */
 @DynamoDBDocument
 data class ExtraLarge(override var name: String = "ExtraLarge") : Engine(
     points = 4,
@@ -281,7 +321,9 @@ open class Armor(
 @DynamoDBDocument
 data class DefaultArmor(override var name: String = "default") : Armor(name)
 
-
+/**
+ * Definition of UltraLight armor.
+ */
 @DynamoDBDocument
 data class UltraLight(override var name: String = "ultra light") : Armor(
     points = 0,
@@ -294,6 +336,9 @@ data class UltraLight(override var name: String = "ultra light") : Armor(
 
 )
 
+/**
+ * Definition of Light armor.
+ */
 @DynamoDBDocument
 data class Light(override var name: String = "light") : Armor(
     points = 1,
@@ -305,6 +350,9 @@ data class Light(override var name: String = "light") : Armor(
     deceleration = 25.0
 )
 
+/**
+ * Definition of Medium armor.
+ */
 @DynamoDBDocument
 data class Medium(override var name: String = "medium") : Armor(
     points = 2,
@@ -315,6 +363,9 @@ data class Medium(override var name: String = "medium") : Armor(
     deceleration = 20.0
 )
 
+/**
+ * Definition of Heavy armor.
+ */
 @DynamoDBDocument
 data class Heavy(override var name: String = "heavy") : Armor(
     points = 3,
@@ -326,6 +377,9 @@ data class Heavy(override var name: String = "heavy") : Armor(
     deceleration = 15.0
 )
 
+/**
+ * Definition of UltraHeavy armor.
+ */
 @DynamoDBDocument
 data class UltraHeavy(override var name: String = "ultra heavy") : Armor(
     points = 4,
