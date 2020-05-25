@@ -65,7 +65,7 @@ data class Game(
     fun aliveCount(): Int = robots.count {it.status == LambdaRobotStatus.alive }
 
     /**
-     * Upadte the robot
+     * Update the robot
      */
     fun updateRobot(newRobot: LambdaRobot): Game {
         // Remove the old robot and update it with the new one
@@ -75,6 +75,9 @@ data class Game(
         return this.copy(robots = updatedRobots)
     }
 
+    /**
+     * Update the information about a missle
+     */
     fun updateMissile(newMissile: LambdaRobotMissile): Game {
         // Remove the old missile and update it with the new one
         val updatedMissiles = missiles.filter {it.id != newMissile.id} + newMissile
@@ -83,6 +86,9 @@ data class Game(
         return this.copy(missiles = updatedMissiles)
     }
 
+    /**
+     * Remove any missiles that are in the destroyed state
+     */
     fun cleanupMissiles(): Game = copy(missiles = missiles.filter { it.status != MissileStatus.destroyed })
 }
 

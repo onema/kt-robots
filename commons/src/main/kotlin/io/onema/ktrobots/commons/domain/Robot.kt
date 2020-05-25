@@ -154,11 +154,20 @@ data class LambdaRobot(
 
     var maxSpeed: Double = engine.maxSpeed + armor.speedModifier
 
+    /**
+     * If the status is equal to alive return true, false otherwise
+     */
     @DynamoDBIgnore
     fun isAlive(): Boolean = status == LambdaRobotStatus.alive
 
+    /**
+     * Get the deceleration base on the armor that the robot has
+     */
     fun deceleration(): Double = armor.deceleration
 
+    /**
+     * Set new damage and record the type of damage it was
+     */
     fun doDamage(damage: Double, turn: Int, isCollision: Boolean = false): LambdaRobot {
         val newDamage = this.damage + damage
         val collisions = if(isCollision) totalCollisions + 1 else totalCollisions

@@ -40,7 +40,17 @@ fun normalizeAngle(angle: Double): Double {
  * Returns a value between -180 and 180 degrees
  */
 fun angleToXY(obj1: Locatable, obj2: Locatable): Double = angleToXY(obj1.x, obj1.y, obj2.x, obj2.y)
+
+/**
+ * Determine the angle in degrees relative to the current robot position
+ * Returns a value between -180 and 180 degrees
+ */
 fun angleToXY(x: Double, y: Double, obj: Locatable): Double = angleToXY(x, y, obj.x, obj.y)
+
+/**
+ * Determine the angle in degrees relative to the current robot position
+ * Returns a value between -180 and 180 degrees
+ */
 fun angleToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
     return normalizeAngle180(atan2(x1 - x2, y1 - y2) * 180.0 / PI)
 }
@@ -49,7 +59,15 @@ fun angleToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
  * Determine the distance relative to the current robot position
  */
 fun distanceToXY(obj1: Locatable, obj2: Locatable): Double = distanceToXY(obj1.x, obj1.y, obj2.x, obj2.y)
+
+/**
+ * Determine the distance relative to the current robot position
+ */
 fun distanceToXY(x: Double, y: Double, obj: Locatable): Double = distanceToXY(x, y, obj.x, obj.y)
+
+/**
+ * Determine the distance relative to the current robot position
+ */
 fun distanceToXY(x1: Double, y1: Double, x2: Double, y2: Double): Double {
     val deltaX = x1 - x2
     val deltaY = y1 - y2

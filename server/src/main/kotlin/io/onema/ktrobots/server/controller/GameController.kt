@@ -20,17 +20,18 @@ import io.onema.ktrobots.server.service.LocalRobotService
 import kotlinx.coroutines.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Controller
 import software.amazon.awssdk.services.lambda.LambdaAsyncClient
-import java.net.InetAddress
 import java.util.*
 
 
+/**
+ * Websocket controller, this deals with starting and stopping a game
+ */
 @Controller
 class GameController(
     val repo: GameTableRepository,
