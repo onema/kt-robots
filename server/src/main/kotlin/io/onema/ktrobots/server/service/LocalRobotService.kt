@@ -19,6 +19,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import kotlin.reflect.full.createInstance
 
+/**
+ * This service calls a robot class with in the same project. The robotResourceName is the fully qualified
+ * name of the class, this includes the namespace and the class name.
+ */
 @Service
 class LocalRobotService : RobotService<LambdaRobotResponse> {
 
@@ -26,7 +30,8 @@ class LocalRobotService : RobotService<LambdaRobotResponse> {
     val log: Logger = LoggerFactory.getLogger(LocalRobotService::class.java)
     // --- Methods ---
     /**
-     * Invoke Local function
+     * Invoke Local function. The robotResourceName is the fully qualified name of the class including namespace
+     * and class name.
      */
     override fun callRobot(robotResourceName: String, request: LambdaRobotRequest): LambdaRobotResponse {
         return try {
