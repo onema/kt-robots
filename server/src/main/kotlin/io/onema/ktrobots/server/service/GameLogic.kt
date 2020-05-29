@@ -94,7 +94,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
                 val action = if (!response.hasError) {
                     response.robotAction
                 } else {
-                    gameMessages.add("\uD83D\uDEA8 ACTION ERROR: ${robot.name}(R${robot.index}), will maintain speed and heading. Error: ${response.errorMessage}", game)
+                    gameMessages.add("🚨 ACTION ERROR: ${robot.name}(R${robot.index}), will maintain speed and heading. Error: ${response.errorMessage}", game)
                     LambdaRobotAction(speed = robot.speed, heading = robot.heading)
                 }
                 robot to action
@@ -427,7 +427,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
             // Verify placement
             val tryAgain = updatedRobots.flatMap{ r1 ->
                 updatedRobots.filter{r1 != it}.map { r2 ->
-                    distanceToXY(r1, r2) < game.minRobotStartDistance
+                    distanceToXY(r1, r2) < game.info.minRobotStartDistance
                 }
             }.any {it}
 
