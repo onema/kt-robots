@@ -140,7 +140,6 @@ Use the **Advance Configuration** to change any default settings.  Use **Clear S
 </details>
 
 ## Level 2: Select Robot Build
-![attack](images/man-shooting-gun.png)
 
 <details>
 <summary>Build your robot with the right equipment</summary>
@@ -164,6 +163,8 @@ For additional details on the different equipment types see the [Robot Build](/d
 </details>
 
 ## Level 3: Create an Attack Strategy
+![attack](images/man-shooting-gun.png)
+
 <details>
 <summary>Develop your attack strategy</summary>
 
