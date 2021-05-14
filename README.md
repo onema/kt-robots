@@ -18,7 +18,7 @@ Make sure that you have the following tools installed on your computer.
 
 - [Download and install the JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 - [Download and install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-- [Download and install Terraform 12](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Download and install the serverless framework](https://www.serverless.com/framework/docs/providers/aws/guide/installation/)
 </details>
 
 ### Setup AWS Account and CLI
@@ -27,12 +27,12 @@ The challenge requires an AWS account. AWS provides a [*Free Tier*](https://aws.
 <summary>Setup Instructions</summary>
 
 - [Create an AWS Account](https://aws.amazon.com)
-- [Configure your AWS profile with the AWS CLI for us-east-2 (Ohio)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
+- [Configure your AWS profile with the AWS CLI for us-east-1](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
 </details>
 
 > **NOTE:** 
 > 
-> For this challenge we will be using the US-EAST-2 region
+> For this challenge we will be using the US-EAST-1 region
 
 ### Clone Git Challenge Repository
 <details>
@@ -53,14 +53,14 @@ cd kt-robots
 ### Deploy using Terraform
 From the command line use `gradlew` to run the `deployRobots` task: 
 ```bash
-./gradlew deployRobots
+./gradlew deploy-robots
 ```
 <details>
 <summary>Details</summary>
 
 This task will 
 - Compile the `lambda-robots` project
-- Deploy the Lambda functions to your AWS account in the `us-east-2` (Ohio) region using Terraform
+- Deploy the Lambda functions to your AWS account in the `us-east-1` region using Terraform
 - The terraform code is in the `lambda-robots/infrastructure` directory
 </details>
 
@@ -76,24 +76,24 @@ Or use the IntelliJ Gradle plugin to execute the task.
 
 Once the command has finished running, the output shows you the ARN of the lambda robots.
 ```bash
-Outputs:
-
-HotShotRobotArn = arn:aws:lambda:us-east-2:123456789012:function:HotShot
-RoboDogRobotArn = arn:aws:lambda:us-east-2:123456789012:function:RoboDog
-YosemiteSamRobotArn = arn:aws:lambda:us-east-2:1234567890120:function:YosemiteSam
-YourRobotARN = arn:aws:lambda:us-east-2:123456789012:function:BringYourOwnRobot
+functions:
+  BringYourOwnRobot: kotlin-robots-dev-BringYourOwnRobot
+  YosemiteSam: kotlin-robots-dev-YosemiteSam
+  HotShot: kotlin-robots-dev-HotShot
+  RoboDog: kotlin-robots-dev-RoboDog
+  TargetRobot: kotlin-robots-dev-TargetRobot
 ```
 
-The `YourRobotARN` is the robot you will be working on!
+The `BringYourOwnRobot` is the robot you will be working on!
 
 > **NOTE:** 
 > 
-> Open `lambda-robots/src/main/kotlin/io.onema.ktrobots.lambda/functions/BringYourOwnRobot` and customize the `NAME` of your robot to distinguish it from other robots.
+> Open `lambda-robots/src/main/kotlin/io.onema.ktrobots.lambda/functions/BringYourOwnRobot` and customize the field `NAME` of your robot to distinguish it from other robots.
 
-### Deploy the game server using Terraform 
-From the command line use `gradlew` to run the `deployServer` task:
+### Deploy the game server using CloudFormation 
+From the command line use `gradlew` to run the `deploy-server` task:
 ```bash
-./gradlew deployServer
+./gradlew deploy-server
 ```
 <details>
 <summary>Details</summary>
@@ -101,14 +101,12 @@ From the command line use `gradlew` to run the `deployServer` task:
 This task creates and does a few things:
 
 - Compile the server
-- Deploy the game server to your AWS account in the `us-east-2` (Ohio) region using Terraform
+- Deploy the game server to your AWS account in the `us-east-1` region using Terraform
 - Creates a docker image that runs the server
 - Create an ECR docker repository to host the image
 - Pushes the image to the new docker repository
 - Creates a Fargate cluster
 - Creates a service and runs a task exposing port 80
-- The terraform code is in the `server/infrastructure` directory
-
 
 </details>
 
@@ -141,16 +139,32 @@ Use the **Advance Configuration** to change any default settings.  Use **Clear S
 </details>
 </details>
 
-## Level 2: Create an Attack Strategy
+## Level 2: Select Robot Build and Create an Attack Strategy
 ![attack](images/man-shooting-gun.png)
 
 <details>
 <summary>Develop your attack strategy</summary>
 
+### Selecting your Robot Build
+
+Each robot has `8` build points. You can spend your points in the following equipment:
+- Armor
+- Engine
+- Radar
+- Missile
+
+To customize your robot build, open the `BringYourOwnRobot` function and update the values in the `LambdaRobotBuild` method. 
+For additional details on the different equipment types see the [Robot Build](#robot-build) section in the [Programming Reference](#programming-reference). 
+
+> **NOTE:** 
+> 
+> If you go over the allotted number of points, your robot will be immediately disqualified
+
+### Develop (or Copy) an Attack Strategy
 Now that you have deployed all the robots to your account add the ARN of the `TargetRobot` multiple times to the KT-Robots server to create targets.
 
 
-Now update the behavior of `BringYourOwnRobot` to shoot down the target robots. 
+Update the behavior of `BringYourOwnRobot` to shoot down the target robots. 
 
 ### Use Luck - YosemiteSam 
 For example, you can use luck, like `YosemiteSam`, which shoots in random directions.
@@ -176,6 +190,7 @@ This robot chooses a random angle on every turn and fires a missile. It has an e
 
 ### Use Targeting - HotShot 
 This robot uses the `scan()` method to find enemies and aim missiles at them. 
+
 ![HotShot](images/hotShot.jpg)
 
 <details>
@@ -197,6 +212,7 @@ This robot uses the `scan()` method to find targets. If it doesn't find targets,
 ### Chase like a dog - RoboDog 
 
 This robot uses the `scan()` method to find enemies and chases them. 
+
 ![RoboDog](images/roboDog.jpg)
 
 <details>
@@ -496,10 +512,10 @@ The ECS Fargate task run on spot instances and this is the cost for running the 
 - 512 vCPU $0.00639685 per hour
 - 1024 MiB $0.00140484 per hour
 
-While it will cost you cents to run this task for a few hours, you want to turn it of after you are done with the challenge.
+While it will cost you cents to run this task for a few hours, you want to turn it off after you are done with the challenge.
 Use the following commands to destroy all the resources:
 
 ```bash
-./gradlew destroyRobots
-./gradlew destroyServer
+./gradlew delete-robots
+./gradlew delete-server
 ```
