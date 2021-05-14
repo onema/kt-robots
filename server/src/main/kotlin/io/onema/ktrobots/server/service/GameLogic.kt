@@ -315,7 +315,7 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
                 val req = LambdaRobotRequest(command = LambdaRobotCommand.getBuild, gameInfo = game.info, index = i, gameId = game.id)
                 Triple(i, arn, robotService.callRobot(arn, req))
             }
-            // Serialize the result and get the build
+            // Deserialize the result and get the build
             .map { (i, arn, response) ->
                 Triple(i, arn, robotService.deserialize(response))
             }
@@ -476,4 +476,3 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
         }
     }
 }
-

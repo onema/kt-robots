@@ -79,21 +79,22 @@ abstract class Robot {
         log.info("Request: ${mapper.writeValueAsString(request)}")
         log.info("Table name ${System.getenv("GAME_STATE_TABLE")}")
         robot = request.lambdaRobot
+        val optionalRobotId = robot.id
+        val robotId: String = if(optionalRobotId.isNullOrEmpty())  LambdaRobot.generateId(request.index, request.gameId) else optionalRobotId
         gameInfo = request.gameInfo
         scanClient = ScanClient(
             request.gameInfo.apiUrl,
             request.gameId,
-            robot.id,
+            robotId,
             httpClient
         )
 
-        val robotId = if(request.lambdaRobot.id.isEmpty())  LambdaRobot.generateId(request.index, request.gameId) else request.lambdaRobot.id
         log.info("Checking for Robot ID: $robotId")
         val record: LambdaRobotStateRecord = table
             .getById(robotId)
             .orElse(LambdaRobotStateRecord(robotId))
         log.info("Robot state ${mapper.writeValueAsString(record)}")
-        var state = record.state
+        val state = record.state
 
         val (newState, response) = when(request.command) {
             LambdaRobotCommand.getBuild -> {

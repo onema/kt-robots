@@ -20,7 +20,7 @@ import io.onema.ktrobots.commons.domain.Game
 @DynamoDBTable(tableName = "KT-Robots-Server-GameTable")
 data class GameRecord(
 
-    @DynamoDBHashKey(attributeName = "primaryKey")
+    @DynamoDBHashKey(attributeName = "PK")
     var primaryKey: String = "",
 
     @DynamoDBAttribute(attributeName = "game")

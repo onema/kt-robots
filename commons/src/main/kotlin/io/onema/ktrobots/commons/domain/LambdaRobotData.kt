@@ -209,7 +209,7 @@ data class LambdaRobotAction(
  */
 @DynamoDBTable(tableName = "ktrobots-state")
 data class LambdaRobotStateRecord(
-    @DynamoDBHashKey(attributeName = "robotId")
+    @DynamoDBHashKey(attributeName = "PK")
     var robotId: String = "",
 
     @DynamoDBAttribute(attributeName = "state")
@@ -242,5 +242,4 @@ data class LambdaRobotState(
     fun initialize(): LambdaRobotState {
         return this.copy(initialized = true)
     }
-
 }
