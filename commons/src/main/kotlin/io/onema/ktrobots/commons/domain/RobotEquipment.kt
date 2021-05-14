@@ -89,7 +89,7 @@ data class Arrow(override var name: String = "arrow") : Missile(
     directHitDamageBonus = 1.0,
     nearHitDamageBonus = 1.0,
     farHitDamageBonus = 0.0,
-    reloadCooldown = 1.0
+    reloadCooldown = 0.5
 )
 
 
@@ -104,7 +104,7 @@ data class Javelin(override var name: String = "javelin") : Missile(
     directHitDamageBonus = 3.0,
     nearHitDamageBonus = 2.0,
     farHitDamageBonus = 1.0,
-    reloadCooldown = 2.0
+    reloadCooldown = 1.0
 )
 
 /**
@@ -118,7 +118,7 @@ data class Cannon(override var name: String = "cannon") : Missile(
     directHitDamageBonus = 6.0,
     nearHitDamageBonus = 4.0,
     farHitDamageBonus = 2.0,
-    reloadCooldown = 3.0
+    reloadCooldown = 1.5
 )
 
 
@@ -133,7 +133,7 @@ data class BFG(override var name: String = "BFG") : Missile(
     directHitDamageBonus = 12.0,
     nearHitDamageBonus = 8.0,
     farHitDamageBonus = 4.0,
-    reloadCooldown = 5.0
+    reloadCooldown = 2.0
 )
 
 /**
