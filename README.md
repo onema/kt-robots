@@ -50,7 +50,7 @@ cd kt-robots
 <details>
 <summary>Deploy lambda functions and server</summary>
  
-### Deploy using Terraform
+### Deploy using CloudFormation and the Serverless Framework
 From the command line use `gradlew` to run the `deployRobots` task: 
 ```bash
 ./gradlew deploy-robots
@@ -60,8 +60,7 @@ From the command line use `gradlew` to run the `deployRobots` task:
 
 This task will 
 - Compile the `lambda-robots` project
-- Deploy the Lambda functions to your AWS account in the `us-east-1` region using Terraform
-- The terraform code is in the `lambda-robots/infrastructure` directory
+- Deploy the Lambda functions to your AWS account in the `us-east-1` region using the Serverless framework
 </details>
 
 <details>
@@ -101,7 +100,7 @@ From the command line use `gradlew` to run the `deploy-server` task:
 This task creates and does a few things:
 
 - Compile the server
-- Deploy the game server to your AWS account in the `us-east-1` region using Terraform
+- Deploy the game server to your AWS account in the `us-east-1` region using CloudFormation
 - Creates a docker image that runs the server
 - Create an ECR docker repository to host the image
 - Pushes the image to the new docker repository
@@ -293,15 +292,15 @@ Beware that a robot cannot change heading without suddenly stopping if its speed
 
 Add the `HotShot` ARN once to the KT-Robots server to create one formidable opponent.
 
-Consider modifying your robot build by tuning the 
+Consider tuning one more time your robots build by updating the equipment
 - engine
-- armor 
+- armor
 - missile
-- radar 
+- radar
 
-Set the proper equipment to suit your attack and evasion strategies. 
-
-**Remember that your build cannot exceed 8 points or your robot will be disqualified from the competition.**
+> 🎯 **Set the proper equipment to suit your attack and evasion strategies.**
+ 
+>⚠️ **Remember that your build cannot exceed 8 points or your robot will be disqualified from the competition.**
 
 </details>
 

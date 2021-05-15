@@ -15,7 +15,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped
-import java.util.*
 
 /**
  * Main lambda robot object, this holds all the information for the robot
@@ -264,6 +263,7 @@ data class LambdaRobot(
                 LambdaRobotMissileType.javelin -> Javelin()
                 LambdaRobotMissileType.cannon -> Cannon()
                 LambdaRobotMissileType.BFG -> BFG()
+                LambdaRobotMissileType.sniperRifle -> SniperRifle()
 
                 // Invalid missile type, will be disqualified
             }

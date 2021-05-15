@@ -137,6 +137,20 @@ data class BFG(override var name: String = "BFG") : Missile(
 )
 
 /**
+ * Definition of a SniperRifle missile.
+ */
+@DynamoDBDocument
+data class SniperRifle(override var name: String = "sniper-rifle") : Missile(
+    points = 5,
+    range = 900.0,
+    velocity = 400.0,
+    directHitDamageBonus = 50.0,
+    nearHitDamageBonus = 5.0,
+    farHitDamageBonus = 0.0,
+    reloadCooldown = 4.0
+)
+
+/**
  * Radar definition, default values and concrete implementations
  */
 @DynamoDBDocument

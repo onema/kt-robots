@@ -183,3 +183,4 @@ Each missile causes damage only when it reaches its set range, none otherwise. W
 | javelin         | 700 meters   | 150 m/s  | 3                | 2              | 1             | 1.0 sec    | 2      |
 | cannon          | 500 meters   | 100 m/s  | 6                | 4              | 2             | 1.5 sec    | 3      |
 | BFG             | 350 meters   | 75 m/s   | 12               | 8              | 4             | 2.0 sec    | 4      |
+| sniperRifle     | 1000 meters  | 400 m/s  | 50               | 5              | 0             | 4.0 sec    | 5      |
