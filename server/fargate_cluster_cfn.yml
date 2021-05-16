@@ -1,31 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: A stack for deploying containerized applications in AWS Fargate.
-  This stack runs containers in a public VPC subnet, and includes a
-  public facing load balancer to register the services in.
-Mappings:
-  # Hard values for the subnet masks. These masks define
-  # the range of internal IP addresses that can be assigned.
-  # The VPC can have all IP's from 10.0.0.0 to 10.0.255.255
-  # There are two subnets which cover the ranges:
-  #
-  # 10.0.0.0 - 10.0.0.255
-  # 10.0.1.0 - 10.0.1.255
-  #
-  # If you need more IP addresses (perhaps you have so many
-  # instances that you run out) then you can customize these
-  # ranges to add more
-  SubnetConfig:
-    VPC:
-      CIDR: '10.0.0.0/16'
-    PublicOne:
-      CIDR: '10.0.0.0/24'
-    PublicTwo:
-      CIDR: '10.0.1.0/24'
-
-#  aws ec2 describe-vpcs \
-#  --filters Name=isDefault,Values=true \
-#  --query 'Vpcs[*].VpcId' \
-#  --output text
 
 Parameters:
   VpcId:
@@ -58,11 +32,6 @@ Resources:
   # A security group for the containers we will run in Fargate.
   # Two rules, allowing network traffic from a public facing load
   # balancer and from other members of the security group.
-  #
-  # Remove any of the following ingress rules that are not needed.
-  # If you want to make direct requests to a container using its
-  # public IP address you'll need to add a security group rule
-  # to allow traffic from all IP addresses.
   FargateContainerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -82,21 +51,6 @@ Resources:
           ToPort: 65535
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VpcId
-
-#  EcsSecurityGroupIngressFromSelf:
-#    Type: AWS::EC2::SecurityGroupIngress
-#    Properties:
-#      Description: Ingress from other containers in the same security group
-#      GroupId: !Ref FargateContainerSecurityGroup
-#      IpProtocol: -1
-#      SourceSecurityGroupId: !Ref FargateContainerSecurityGroup
-
-  # Load balancers for getting traffic to containers.
-  # This sample template creates one load balancer:
-  #
-  # - One public load balancer, hosted in public subnets that is accessible
-  #   to the public, and is intended to route traffic to one or more public
-  #   facing services.
 
   # This is an IAM role which authorizes ECS to manage resources on your
   # account on your behalf, such as updating your load balancer with the
@@ -139,18 +93,6 @@ Resources:
                   - 'elasticloadbalancing:RegisterInstancesWithLoadBalancer'
                   - 'elasticloadbalancing:RegisterTargets'
                 Resource: '*'
-#              - Effect: Allow
-#                Action:
-#                  # Allow the ECS Tasks to download images from ECR
-#                  - 'ecr:GetAuthorizationToken'
-#                  - 'ecr:BatchCheckLayerAvailability'
-#                  - 'ecr:GetDownloadUrlForLayer'
-#                  - 'ecr:BatchGetImage'
-#
-#                  # Allow the ECS tasks to upload logs to CloudWatch
-#                  - 'logs:CreateLogStream'
-#                  - 'logs:PutLogEvents'
-#                Resource: '*'
 
   # This is a role which is used by the ECS tasks themselves.
   ECSTaskRole:

@@ -19,6 +19,6 @@ docker tag ktrobots-server:latest "${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws
 echo "Pushing image"
 docker push "${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/kt-robots-server-repository:latest"
 
-aws cloudformation deploy --stack-name kt-robots-server-service --template-file fargate_service_cfn.yml --parameter-overrides VpcId=${VPC_ID} Subnets=${SUBNET_IDS}  --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation deploy --stack-name kt-robots-server-service --template-file fargate_service_cfn.yml --parameter-overrides VpcId=${VPC_ID} Subnets=${SUBNET_IDS} Cpu=1024 Memory=2GB  --capabilities CAPABILITY_NAMED_IAM
 
 ECS_TASK_ARN=$(aws ecs list-tasks --cluster kt-robots-server-cluster --query 'taskArns[*]' --output text | sed 's/\t/,/g')
