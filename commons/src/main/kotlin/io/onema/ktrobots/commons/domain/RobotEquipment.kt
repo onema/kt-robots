@@ -86,9 +86,9 @@ data class Arrow(override var name: String = "arrow") : Missile(
     points = 1,
     range = 900.0,
     velocity = 200.0,
-    directHitDamageBonus = 1.0,
+    directHitDamageBonus = 2.0,
     nearHitDamageBonus = 1.0,
-    farHitDamageBonus = 0.0,
+    farHitDamageBonus = 0.5,
     reloadCooldown = 0.5
 )
 
@@ -101,8 +101,8 @@ data class Javelin(override var name: String = "javelin") : Missile(
     points = 2,
     range = 700.0,
     velocity = 150.0,
-    directHitDamageBonus = 3.0,
-    nearHitDamageBonus = 2.0,
+    directHitDamageBonus = 6.0,
+    nearHitDamageBonus = 3.0,
     farHitDamageBonus = 1.0,
     reloadCooldown = 1.0
 )
@@ -115,9 +115,9 @@ data class Cannon(override var name: String = "cannon") : Missile(
     points = 3,
     range = 500.0,
     velocity = 100.0,
-    directHitDamageBonus = 6.0,
-    nearHitDamageBonus = 4.0,
-    farHitDamageBonus = 2.0,
+    directHitDamageBonus = 10.0,
+    nearHitDamageBonus = 8.0,
+    farHitDamageBonus = 6.0,
     reloadCooldown = 1.5
 )
 
@@ -130,9 +130,9 @@ data class BFG(override var name: String = "BFG") : Missile(
     points = 4,
     range = 350.0,
     velocity = 75.0,
-    directHitDamageBonus = 12.0,
-    nearHitDamageBonus = 8.0,
-    farHitDamageBonus = 4.0,
+    directHitDamageBonus = 40.0,
+    nearHitDamageBonus = 20.0,
+    farHitDamageBonus = 10.0,
     reloadCooldown = 2.0
 )
 
@@ -142,10 +142,10 @@ data class BFG(override var name: String = "BFG") : Missile(
 @DynamoDBDocument
 data class SniperRifle(override var name: String = "sniper-rifle") : Missile(
     points = 5,
-    range = 900.0,
-    velocity = 400.0,
-    directHitDamageBonus = 50.0,
-    nearHitDamageBonus = 5.0,
+    range = 1200.0,
+    velocity = 1750.0,
+    directHitDamageBonus = 30.0,
+    nearHitDamageBonus = 15.0,
     farHitDamageBonus = 0.0,
     reloadCooldown = 4.0
 )

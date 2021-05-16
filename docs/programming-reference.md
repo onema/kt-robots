@@ -179,8 +179,8 @@ Each missile causes damage only when it reaches its set range, none otherwise. W
 | Missile Type    | Max. Range   | Velocity | Direct Hit Bonus | Near Hit Bonus | Far Hit Bonus | Cooldown   | Points |
 | --------------- | ------------ | -------- | ---------------- | -------------- | ------------- | ---------- | ------ |
 | dart            | 1,200 meters | 250 m/s  | 0                | 0              | 0             | 0.0 sec    | 0      |
-| arrow           | 900 meters   | 200 m/s  | 1                | 1              | 0             | 0.5 sec    | 1      |
-| javelin         | 700 meters   | 150 m/s  | 3                | 2              | 1             | 1.0 sec    | 2      |
-| cannon          | 500 meters   | 100 m/s  | 6                | 4              | 2             | 1.5 sec    | 3      |
-| BFG             | 350 meters   | 75 m/s   | 12               | 8              | 4             | 2.0 sec    | 4      |
-| sniperRifle     | 1000 meters  | 400 m/s  | 50               | 5              | 0             | 4.0 sec    | 5      |
+| arrow           | 900 meters   | 200 m/s  | 2                | 1              | 0.5           | 0.5 sec    | 1      |
+| javelin         | 700 meters   | 150 m/s  | 6                | 3              | 1             | 1.0 sec    | 2      |
+| cannon          | 500 meters   | 100 m/s  | 10               | 8              | 6             | 1.5 sec    | 3      |
+| BFG             | 350 meters   | 75 m/s   | 40               | 20             | 10            | 2.0 sec    | 4      |
+| sniperRifle     | 1200 meters  | 1750 m/s | 30               | 15             | 0             | 4.0 sec    | 5      |

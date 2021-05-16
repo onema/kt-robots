@@ -47,7 +47,10 @@ functions:
   Roomba:
     memorySize: 2048
     handler:  io.onema.ktrobots.lambda.functions.Roomba::handleRequest
-    environment:
+
+  Sniper:
+    memorySize: 2048
+    handler:  io.onema.ktrobots.lambda.functions.Sniper::handleRequest
 
   BringYourOwnRobot:
     memorySize: 2048

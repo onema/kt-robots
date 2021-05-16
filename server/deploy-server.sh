@@ -7,7 +7,7 @@ SUBNET_IDS=$(aws ec2 describe-subnets --filter Name=vpc-id,Values=$VPC_ID --quer
 echo "VPC ID = ${VPC_ID}"
 echo "SUBNET IDS = ${SUBNET_IDS}"
 
-aws cloudformation deploy --stack-name kt-robots-server --template-file fargate_cluster.yml --parameter-overrides VpcId=${VPC_ID}  --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation deploy --stack-name kt-robots-server --template-file fargate_cluster_cfn.yml --parameter-overrides VpcId=${VPC_ID}  --capabilities CAPABILITY_NAMED_IAM
 echo "Building Docker image"
 docker build -t ktrobots-server .
 
