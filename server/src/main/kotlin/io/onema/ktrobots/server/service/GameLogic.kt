@@ -363,8 +363,8 @@ class GameLogic<TRobot : RobotService<TResponse>, TResponse>(private val robotSe
         }
 
         /**
-         * The a set of coordinates (x, y), the total traveled distance by the object, the speed, heading and
-         * total range, compute the updated information and return a a MoveData object that represents
+         * Given a set of coordinates (x, y), the total traveled distance by the object, the speed, heading, and
+         * total range, compute the updated information and return a MoveData object that represents
          * the updated state.
          */
         fun moveObject(game: Game, startX: Double, startY: Double, startDistance: Double,
