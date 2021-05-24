@@ -49,7 +49,7 @@ class HotShot : Robot(), LambdaRobotFunction {
         }
 
         // scan left scan area
-        val leftScan = scan(state.scanHeading + state.scanResolution, state.scanResolution)
+        val leftScan = scan(state.scanHeading - state.scanResolution, state.scanResolution)
 
         val scan = if(leftScan.found && leftScan.distance > gameInfo.farHitRange && leftScan.distance <= robot.missile.range) {
             log.info("Target found: scanHeading = ${state.scanHeading}, range = ${leftScan.distance}")
