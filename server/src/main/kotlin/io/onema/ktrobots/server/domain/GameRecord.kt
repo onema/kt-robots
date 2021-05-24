@@ -17,7 +17,7 @@ import io.onema.ktrobots.commons.domain.Game
 /**
  * This class contains the information that will be saved in the game state table
  */
-@DynamoDBTable(tableName = "KT-Robots-Server-GameTable")
+@DynamoDBTable(tableName = "kt-robots-server-game-table")
 data class GameRecord(
 
     @DynamoDBHashKey(attributeName = "PK")

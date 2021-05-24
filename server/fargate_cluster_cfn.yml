@@ -9,7 +9,7 @@ Resources:
   RobotState:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: KT-Robots-Server-GameTable
+      TableName: kt-robots-server-game-table
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: PK
