@@ -1,8 +1,15 @@
 # KT-Robots
 
+> **KT-Robots is a port of the [λ-Robots](https://github.com/LambdaSharp/LambdaRobots) Team Hackathon Challenge.**
+> 
+> The original idea can be traced back to the 70s [RobotWar](https://corewar.co.uk/robotwar.htm). 
+> 
+> This repository is an implementation of the game in the [kotlin](https://kotlinlang.org/) programming language and the [spring framework](https://spring.io/).
+
+KT-Robots is a Team Hakcathon programming challenge build using serverless technologies.
+
 In KT-Robots, you program a battle robot that participates in a square game field. Each turn, the server invokes your robot's Lambda function to get its action until the robot wins or is destroyed.
 
-**KT-Robots is a port of the [λ-Robots](https://github.com/LambdaSharp/LambdaRobots) and the 90s [P-Robots](https://corewar.co.uk/probots.htm) game to [kotlin](https://kotlinlang.org/) and [spring](https://spring.io/).**
 
 ![](images/kotlin-robots.jpg)
  
@@ -51,7 +58,7 @@ cd kt-robots
 <summary>Deploy lambda functions and server</summary>
  
 ### Deploy using CloudFormation and the Serverless Framework
-From the command line use `gradlew` to run the `deployRobots` task: 
+From the command line use `gradlew` to run the `deploy-robots` task: 
 ```bash
 ./gradlew deploy-robots
 ```
@@ -97,7 +104,7 @@ From the command line use `gradlew` to run the `deploy-server` task:
 <details>
 <summary>Details</summary>
 
-This task creates and does a few things:
+This task performs the following actions:
 
 - Compile the server
 - Deploy the game server to your AWS account in the `us-east-1` region using CloudFormation
@@ -218,7 +225,7 @@ This robot uses the `scan()` method to find targets. If it doesn't find targets,
 
 ### Chase like a dog - RoboDog 
 
-This robot uses the `scan()` method to find enemies and chases them. 
+This robot uses the `scan()` method to find enemies and chases them causing collision damage.
 
 ![RoboDog](images/roboDog.jpg)
 
