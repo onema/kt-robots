@@ -76,9 +76,9 @@ abstract class Robot {
      * Handle the lambda request to get the build or action of the robot
      */
     fun handle(request: LambdaRobotRequest): LambdaRobotResponse {
-        log.info("Request: ${mapper.writeValueAsString(request)}")
-        log.info("Table name ${System.getenv("GAME_STATE_TABLE")}")
         robot = request.lambdaRobot
+        log("Request", mapper.writeValueAsString(request))
+        log("Table name", System.getenv("GAME_STATE_TABLE"))
         val optionalRobotId = robot.id
         val robotId: String = if(optionalRobotId.isNullOrEmpty())  LambdaRobot.generateId(request.index, request.gameId) else optionalRobotId
         gameInfo = request.gameInfo
@@ -89,26 +89,26 @@ abstract class Robot {
             httpClient
         )
 
-        log.info("Checking for Robot ID: $robotId")
+        log("Robot ID check", robotId)
         val record: LambdaRobotStateRecord = table
             .getById(robotId)
             .orElse(LambdaRobotStateRecord(robotId))
-        log.info("Robot state ${mapper.writeValueAsString(record)}")
+        log("Robot state", mapper.writeValueAsString(record))
         val state = record.state
 
         val (newState, response) = when(request.command) {
             LambdaRobotCommand.getBuild -> {
-                log.info("Calling get build")
+                logger.info("Calling get build")
                 val (build, newState) = getBuild(state)
                 Pair(newState, LambdaRobotResponse(robotBuild = build))
             }
             LambdaRobotCommand.getAction -> {
-                log.info("Calling action")
+                logger.info("Calling action")
                 val (action, newState) = getAction(state)
                 Pair(newState, LambdaRobotResponse(robotAction = action))
             }
         }
-        log.info("Saving new state")
+        logger.info("Saving new state")
         table.save(record.copy(state = newState))
         return response
     }
@@ -119,7 +119,7 @@ abstract class Robot {
      */
     fun scan(heading: Double, resolution: Double): ScanEnemiesResponse {
         val response = scanClient.scan(heading, resolution)
-        log.info("Scan: heading = $heading, resolution = $resolution, scan result = $response")
+        log("Scan", "heading = $heading, resolution = $resolution, scan result = $response")
         return response
     }
 
@@ -150,7 +150,7 @@ abstract class Robot {
      * A missile can only be fired in the robot reload cooldown is 0
      */
     fun LambdaRobotAction.fireMissile(heading: Double, distance: Double): LambdaRobotAction {
-        log.info("Firing missile!")
+        log("Firing missile", "fireMissileHeading = $heading, fireMissileDistance = $distance")
         return this.copy(fireMissileHeading = heading, fireMissileDistance = distance, fired = true)
     }
 
@@ -161,6 +161,10 @@ abstract class Robot {
         val heading = angleToXY(x, y)
         val distance = distanceToXY(x, y)
         return this.fireMissile(heading, distance)
+    }
+
+    fun log(index: String, message: String) {
+        logger.info("${robot.name}-${robot.index}: $index: $message")
     }
 
     /**
@@ -174,7 +178,7 @@ abstract class Robot {
         } else {
             sqrt(distance * 2.0 * robot.deceleration()) * gameInfo.secondsPerTurn to false
         }
-        log.info("Move to: X=$x, Y=$y, heading=$heading, distance=$distance")
+        log("Move to", "X=$x, Y=$y, heading=$heading, distance=$distance")
 
         return if (abs(normalizeAngle(robot.heading - heading)) > 0.1) {
             val newSpeed = min(robot.maxTurnSpeed, speed)
@@ -221,6 +225,6 @@ abstract class Robot {
     }
 
     companion object {
-        val log: Logger = LogManager.getLogger(LambdaRobotFunction::class.java)
+        val logger: Logger = LogManager.getLogger(LambdaRobotFunction::class.java)
     }
 }
