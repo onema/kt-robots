@@ -79,8 +79,7 @@ abstract class Robot {
         robot = request.lambdaRobot
         log("Request", mapper.writeValueAsString(request))
         log("Table name", System.getenv("GAME_STATE_TABLE"))
-        val optionalRobotId = robot.id
-        val robotId: String = if(optionalRobotId.isNullOrEmpty())  LambdaRobot.generateId(request.index, request.gameId) else optionalRobotId
+        val robotId: String = robot.id ?: LambdaRobot.generateId(request.index, request.gameId)
         gameInfo = request.gameInfo
         scanClient = ScanClient(
             request.gameInfo.apiUrl,
