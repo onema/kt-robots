@@ -324,6 +324,11 @@ Consider tuning one more time your robots build by updating the equipment
 
 For the boss level, your opponent is every other team! Submit your robot ARN and see how well it fares.
 
+Before submitting your ARN for the competition, allow access to invoke your function:
+```bash
+aws lambda add-permission --function-name "YOUR FUNCTION ARN GOES HERE" --action lambda:InvokeFunction --statement-id kt-robots-invoke-function --principal '*' --region us-east-1  
+```
+
 **May the odds be ever in your favor!**
 </details>
 
